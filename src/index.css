@@ -14,6 +14,8 @@ code {
 img{
   width: 140px;
   padding: 10px;
+  border-radius: 150px;
+  border: 1px solid #a8a6a6;
 }
 .profileName span{
   padding-bottom: 5px;
