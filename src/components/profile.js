@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import Activities from './Activities';
 
 function Profile(props){
     const [stats, setStats] = useState({
@@ -21,7 +23,6 @@ function Profile(props){
         var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         axios.get('https://api.github.com/users/' + props.match.params.profile_id)
         .then( res => {
-            console.log(res.data);
             var date = new Date(res.data.created_at);
             setStats({
                 followers: res.data.followers,
@@ -43,10 +44,10 @@ function Profile(props){
 
     useEffect(() => {
         getStats();
-        console.log(props);
-    }, [ ]);
+    }, []);
 
     return(
+        <>
         <header>
             <div className="logo">
                 <img src={profile.avatar_url} alt="logo" />
@@ -64,6 +65,8 @@ function Profile(props){
                 <div className="stats-item"> Repositories: {stats.repos}</div>
             </div>
         </header>
+        <Activities userName = {props.match.params.profile_id} />
+        </>
     )
 }
 

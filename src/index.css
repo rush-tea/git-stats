@@ -1,6 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@500&family=Poppins&family=Quicksand:wght@500&display=swap");
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont,'Poppins', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
