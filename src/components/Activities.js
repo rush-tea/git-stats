@@ -5,17 +5,16 @@ function Activities(props){
     const [activity, setActivity] = useState([]);
 
     useEffect(() => {
+        console.log(props.userName);
         axios.get("https://api.github.com/users/" + props.userName + "/events/public")
             .then(res => {
                 setActivity(res.data);
-                console.log(res.data);
             })
             .catch(err => console.log(err));
-        console.log(activity);
-        
     },[]);
 
     return(
+        <>
         <div>
             {
                 activity.map(res => {
@@ -25,14 +24,14 @@ function Activities(props){
                             if(res.payload.ref_type === 'branch'){
                                 var branchUrl = repoUrl + "/tree/" +res.payload.ref
                                 return (
-                                    <li>
+                                    <li key={res.id}>
                                         Created a <a href={branchUrl} >{res.payload.ref_type}</a> in <a href={repoUrl}> {res.repo.name}</a>
                                     </li>
                                 )
                             }
                             if(res.payload.ref_type === 'repository'){
                                 return(
-                                    <li>
+                                    <li key={res.id}>
                                         Created a {res.payload.ref_type} <a href={repoUrl}> {res.repo.name}</a>
                                     </li>
                                 )
@@ -46,21 +45,21 @@ function Activities(props){
                                 commit = commit + 's';
                             } 
                             return (
-                                <li>
+                                <li key={res.id}>
                                     Pushed {res.payload.size} {commit} to <a href={branchUrl}> {branchName}</a> in <a href={repoUrl}> {res.repo.name} </a>
                                 </li>
                             )
                         case "WatchEvent" : 
                             var repoUrl = "https://github.com/" + res.repo.name;
                             return (
-                                <li>
+                                <li key={res.id}>
                                     Starred a repo <a href={repoUrl}>{res.repo.name}</a>
                                 </li>
                             )
                         case "DeleteEvent" :
                             var repoUrl = "https://github.com/" + res.repo.name;
                             return (
-                                <li>
+                                <li key={res.id}>
                                     Deleted a {res.payload.ref_type} {res.payload.ref} from <a href={repoUrl}>{res.repo.name}</a>
                                 </li>
                             ) 
@@ -68,7 +67,7 @@ function Activities(props){
                             var fromUrl = "https://github.com/" + res.repo.name;   
                             var toUrl = "https://github.com/" + res.payload.forkee.full_name; 
                             return (
-                                <li>
+                                <li key={res.id}>
                                     Forked a repo <a href={fromUrl}>{res.repo.name}</a> to <a href={toUrl}>{res.payload.forkee.full_name}</a>
                                 </li>
                             )
@@ -76,7 +75,7 @@ function Activities(props){
                             var repoUrl = "https://github.com/" + res.repo.name;
                             var action = res.payload.action;    
                             return (
-                                <li>
+                                <li key={res.id}>
                                     {action.slice(0,1).toUpperCase() + action.slice(1,action.length)} a <a href={res.payload.pull_request.html_url}>pull request</a> in <a href={repoUrl}>{res.repo.name}</a>
                                 </li>
                             )
@@ -84,7 +83,7 @@ function Activities(props){
                             var action= res.payload.action;
                             var repoUrl = "https://github.com/" + res.repo.name;
                             return (
-                                <li>
+                                <li key={res.id}>
                                     {action.slice(0, 1).toUpperCase() + action.slice(1, action.length)} a <a href={res.payload.issue.html_url}>issue </a> in <a href={repoUrl}> {res.repo.name} </a>
                                 </li>
                             )                   
@@ -94,6 +93,7 @@ function Activities(props){
                 })
             }
         </div>
+        </>
     )
 }
 

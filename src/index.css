@@ -12,11 +12,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-img{
+.following-details{
+  display: flex;
+}
+.logo img{
   width: 140px;
   padding: 10px;
   border-radius: 150px;
   border: 1px solid #a8a6a6;
+}
+div .following-logo{
+  width: 50px;
 }
 .profileName span{
   padding-bottom: 5px;
@@ -24,7 +30,8 @@ img{
 .stats{
   padding: 10px;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto;
+  column-gap: 5px;
 }
 .profileName{
   padding: 10px;
@@ -36,6 +43,8 @@ img{
 }
 .stats-item{
   justify-self: center;
+  align-self: center;
+  text-align: center;
 }
 @media (max-width: 800px){
   header{
