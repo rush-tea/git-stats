@@ -15,24 +15,30 @@ function Activities(props){
 
     return(
         <>
-        <div>
+        <div className="act-heading"> Latest Activities</div>
+        <div className="activity-scroll" id="act-scrollbar">
             {
                 activity.map(res => {
-                    var repoUrl = "https://github.com/" +res.actor.login +"/" + res.repo.name.slice(res.actor.login.length + 1, res.repo.name.length) ;
+                    var branchIcon = <i className="fa fa-code-fork" aria-hidden="true"></i>
+                    var starIcon = <i className="fa fa-star" aria-hidden="true"></i>
+                    var issueIcon = <i className="fa fa-bug" aria-hidden="true"></i>
+                    var deleteIcon = <i className="fa fa-trash" aria-hidden="true"></i>
+                    var plusIcon = <i className="fa fa-plus-circle" aria-hidden="true"></i>
+                    repoUrl = "https://github.com/" +res.actor.login +"/" + res.repo.name.slice(res.actor.login.length + 1, res.repo.name.length) ;
                     switch (res.type) {
                         case "CreateEvent" :
                             if(res.payload.ref_type === 'branch'){
-                                var branchUrl = repoUrl + "/tree/" +res.payload.ref
+                                branchUrl = repoUrl + "/tree/" +res.payload.ref
                                 return (
                                     <li key={res.id}>
-                                        Created a <a href={branchUrl} >{res.payload.ref_type}</a> in <a href={repoUrl}> {res.repo.name}</a>
+                                        {branchIcon} Created a <a className="cool-link" href={branchUrl} >{res.payload.ref_type}</a> in <a className="cool-link" href={repoUrl}> {res.repo.name}</a>
                                     </li>
                                 )
                             }
                             if(res.payload.ref_type === 'repository'){
                                 return(
                                     <li key={res.id}>
-                                        Created a {res.payload.ref_type} <a href={repoUrl}> {res.repo.name}</a>
+                                        {plusIcon } <span>Created a {res.payload.ref_type}</span>  <span><a className="cool-link" href={repoUrl}> {res.repo.name}</a></span>
                                     </li>
                                 )
                             }
@@ -46,21 +52,21 @@ function Activities(props){
                             } 
                             return (
                                 <li key={res.id}>
-                                    Pushed {res.payload.size} {commit} to <a href={branchUrl}> {branchName}</a> in <a href={repoUrl}> {res.repo.name} </a>
+                                    {plusIcon} <span>Pushed </span>{res.payload.size} {commit} to <a className="cool-link" href={branchUrl}> {branchName}</a> in <a className="cool-link" href={repoUrl}> {res.repo.name} </a>
                                 </li>
                             )
                         case "WatchEvent" : 
-                            var repoUrl = "https://github.com/" + res.repo.name;
+                            repoUrl = "https://github.com/" + res.repo.name;
                             return (
                                 <li key={res.id}>
-                                    Starred a repo <a href={repoUrl}>{res.repo.name}</a>
+                                    {starIcon} Starred a repo <a className="cool-link" href={repoUrl}>{res.repo.name}</a>
                                 </li>
                             )
                         case "DeleteEvent" :
-                            var repoUrl = "https://github.com/" + res.repo.name;
+                            repoUrl = "https://github.com/" + res.repo.name;
                             return (
                                 <li key={res.id}>
-                                    Deleted a {res.payload.ref_type} {res.payload.ref} from <a href={repoUrl}>{res.repo.name}</a>
+                                    {deleteIcon} Deleted a {res.payload.ref_type} {res.payload.ref} from <a className="cool-link" href={repoUrl}>{res.repo.name}</a>
                                 </li>
                             ) 
                         case "ForkEvent": 
@@ -68,15 +74,21 @@ function Activities(props){
                             var toUrl = "https://github.com/" + res.payload.forkee.full_name; 
                             return (
                                 <li key={res.id}>
-                                    Forked a repo <a href={fromUrl}>{res.repo.name}</a> to <a href={toUrl}>{res.payload.forkee.full_name}</a>
+                                    {branchIcon} Forked a repo <a className="cool-link" href={fromUrl}>{res.repo.name}</a> to <a className="cool-link" href={toUrl}>{res.payload.forkee.full_name}</a>
                                 </li>
                             )
                         case "PullRequestEvent" :
-                            var repoUrl = "https://github.com/" + res.repo.name;
-                            var action = res.payload.action;    
+                            repoUrl = "https://github.com/" + res.repo.name;
+                            action = res.payload.action;
+                            if(action === "closed"){
+                                var iconNext = deleteIcon
+                            }    
+                            else{
+                                iconNext = branchIcon 
+                            }
                             return (
                                 <li key={res.id}>
-                                    {action.slice(0,1).toUpperCase() + action.slice(1,action.length)} a <a href={res.payload.pull_request.html_url}>pull request</a> in <a href={repoUrl}>{res.repo.name}</a>
+                                    {iconNext} {action.slice(0, 1).toUpperCase() + action.slice(1, action.length)} a <a className="cool-link" href={res.payload.pull_request.html_url}>pull request</a> in <a className="cool-link" href={repoUrl}>{res.repo.name}</a>
                                 </li>
                             )
                         case "IssuesEvent" :
@@ -84,7 +96,7 @@ function Activities(props){
                             var repoUrl = "https://github.com/" + res.repo.name;
                             return (
                                 <li key={res.id}>
-                                    {action.slice(0, 1).toUpperCase() + action.slice(1, action.length)} a <a href={res.payload.issue.html_url}>issue </a> in <a href={repoUrl}> {res.repo.name} </a>
+                                    {issueIcon} {action.slice(0, 1).toUpperCase() + action.slice(1, action.length)} a <a className="cool-link" href={res.payload.issue.html_url}>issue </a> in <a className="cool-link" href={repoUrl}> {res.repo.name} </a>
                                 </li>
                             )                   
                         default:

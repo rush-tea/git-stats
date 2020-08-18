@@ -97,7 +97,7 @@ function Profile(props) {
                         followers: false,
                         following: false,
                         repos: false
-                    }) }> Activities</button>
+                    }) }>Activity</button>
                     <button className="stats-item" onClick={() => setTabs({
                         activity: false,
                         followers: true,
@@ -118,9 +118,9 @@ function Profile(props) {
                     })}>{stats.repos} Repositories</button>
                 </div>
             </header>
-            <div>
-                { getTabs(tabs,profile.login) }
-            </div>            
+            <div className="activity">
+                {getTabs(tabs, profile.login)} 
+            </div>        
         </>
     )
 }
