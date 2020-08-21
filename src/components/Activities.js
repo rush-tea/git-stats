@@ -1,16 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import { Ripple } from 'react-preloaders';
+import Sugar from 'react-preloaders/lib/Sugar/Sugar';
 
 function Activities(props){
     const [activity, setActivity] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         console.log(props.userName);
         axios.get("https://api.github.com/users/" + props.userName + "/events/public")
             .then(res => {
                 setActivity(res.data);
+                setLoading(true);
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err);
+                setLoading(true);
+            });
     },[]);
 
     return(

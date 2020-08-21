@@ -150,6 +150,35 @@ button :hover{
     padding: 10px 10px 10px 15px;
     border-bottom: 1px solid #f0f0f0;
   }
+  .repo-scroll{
+    overflow: scroll;
+    height: 400px;
+    font-size: 80%;
+  }
+  .repo-detail{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 15px 10px;
+    padding: 10px 10px 10px 15px;
+    border-bottom: #f0f0f0 1px solid;
+  }
+  .repo-name{
+    grid-column: 1/3;
+    font-size: 120%;
+  }
+  .repo-more{
+    text-align: right;
+  }
+  .repo-desc{
+    grid-column: 1/4;
+  }
+  .repo-forks{
+    grid-column: 1/3;
+  }
+  .repo-site{
+    grid-column: 2/4;
+    text-align: right;
+  }
 }
 @media(min-width: 800px){
   header{
@@ -159,4 +188,61 @@ button :hover{
     display: grid;
     grid-template-columns: 1fr 2fr 3fr;
   }
+}
+
+/*---------------------*/
+/*Animations*/
+/*---------------------*/
+.profileName span:nth-of-type(1){
+  position: relative;
+  animation: profileAnimate;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+.profileName span:nth-of-type(2) {
+  position: relative;
+  animation: profileAnimate;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+.profileName span:nth-of-type(3) {
+  position: relative;
+  animation: profileAnimate;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+}
+.profileName span:nth-of-type(4) {
+  position: relative;
+  animation: profileAnimate;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+.profileName span:nth-of-type(5) {
+  position: relative;
+  animation: profileAnimate;
+  animation-duration: 2.5s;
+  animation-fill-mode: forwards;
+}
+img{
+  position: relative;
+  animation: profileAnimate;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes profileAnimate {
+  0% {bottom: -20px;opacity: -1;}
+  100% {bottom: 0px; opacity: 1;}
+}
+
+.f-details span:nth-of-type(1){
+  position: relative;
+  animation: followAnimate;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes followAnimate{
+  0% {top: -20px;opacity: -1;}
+  100% {top: 0px;opacity: 1;}
 }

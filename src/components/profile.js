@@ -1,12 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Suspense} from 'react';
 import axios from 'axios';
-import Activities from './Activities';
-import Followers from './Followers';
-import Following from './Following';
-import Repositories from './Repositories';
+const Activities = React.lazy(() => import('./Activities'));
+const Followers = React.lazy(() => import('./Followers'));
+const Following = React.lazy(() => import('./Following'));
+const Repositories = React.lazy(() => import('./Repositories'));
 
 
 function Profile(props) {
+    var Loader = require('react-loader');
+
+    const [loaded,setLoading] = useState(false);
     const [stats, setStats] = useState({
         followers: 0,
         following: 0,
@@ -46,8 +49,12 @@ function Profile(props) {
                     name: res.data.name,
                     login: res.data.login
                 });
+                setLoading(true);
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err);
+                setLoading(true);
+            });
 
     }
 
@@ -77,20 +84,19 @@ function Profile(props) {
             )
         }
     }
-
     return (
         <>
             <header>
-                <div className="logo">
-                    <img src={profile.avatar_url} alt="logo" />
-                </div>
-                <div className="profileName">
-                    <span>{profile.name}</span>
-                    <span> {profile.login} </span>
-                    <span>{profile.bio}</span>
-                    <span>{profile.company}</span>
-                    <span>Joined on {profile.joinedOn} </span>
-                </div>
+                    <div className="logo">
+                        <img src={profile.avatar_url} alt="logo" />
+                    </div>
+                    <div className="profileName">
+                        <span>{profile.name}</span>
+                        <span> {profile.login} </span>
+                        <span>{profile.bio}</span>
+                        <span>{profile.company}</span>
+                        <span>Joined on {profile.joinedOn} </span>
+                    </div>
                 <div className="stats">
                     <button className="stats-item" onClick={() => setTabs({
                         activity: true,
@@ -118,9 +124,11 @@ function Profile(props) {
                     })}>{stats.repos} Repositories</button>
                 </div>
             </header>
-            <div className="activity">
-                {getTabs(tabs, profile.login)} 
-            </div>        
+            <Suspense fallback = {<div>Loading...</div>} >
+                <div className="activity">
+                    {getTabs(tabs, profile.login)}
+                </div> 
+            </Suspense>       
         </>
     )
 }
