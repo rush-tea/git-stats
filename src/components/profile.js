@@ -1,9 +1,11 @@
 import React, {useState, useEffect, Suspense} from 'react';
 import axios from 'axios';
+import ProfileOverview from './ProfileOverview';
 const Activities = React.lazy(() => import('./Activities'));
 const Followers = React.lazy(() => import('./Followers'));
 const Following = React.lazy(() => import('./Following'));
 const Repositories = React.lazy(() => import('./Repositories'));
+
 
 
 function Profile(props) {
@@ -84,26 +86,25 @@ function Profile(props) {
             )
         }
     }
+
+    const getProfile = () => {
+        if(profile.login.length !== 0){
+            return(
+                <ProfileOverview profile={profile} />
+            )
+        }
+    }
     return (
         <>
-            <header>
-                    <div className="logo">
-                        <img src={profile.avatar_url} alt="logo" />
-                    </div>
-                    <div className="profileName">
-                        <span>{profile.name}</span>
-                        <span> {profile.login} </span>
-                        <span>{profile.bio}</span>
-                        <span>{profile.company}</span>
-                        <span>Joined on {profile.joinedOn} </span>
-                    </div>
+        <header>
+                {getProfile(profile)}
                 <div className="stats">
                     <button className="stats-item" onClick={() => setTabs({
                         activity: true,
                         followers: false,
                         following: false,
                         repos: false
-                    }) }>Activity</button>
+                    })}>Activity</button>
                     <button className="stats-item" onClick={() => setTabs({
                         activity: false,
                         followers: true,
@@ -123,12 +124,12 @@ function Profile(props) {
                         repos: true
                     })}>{stats.repos} Repositories</button>
                 </div>
-            </header>
-            <Suspense fallback = {<div>Loading...</div>} >
-                <div className="activity">
-                    {getTabs(tabs, profile.login)}
-                </div> 
-            </Suspense>       
+        </header>
+        <Suspense fallback = {<div>Loading...</div>} >
+            <div className="activity">
+                {getTabs(tabs, profile.login)}
+            </div> 
+        </Suspense>       
         </>
     )
 }

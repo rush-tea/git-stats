@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 function Repositories(props) {
     const [activity, setActivity] = useState([]);
@@ -13,6 +14,13 @@ function Repositories(props) {
             .catch(err => console.log(err));
     }, []);
 
+    const getMoreDetails = (userName) => {
+        console.log(userName);
+            return(
+                <div>Hello</div>
+            )
+    }
+
     return (
         <>
             <div className="act-heading"> Repositories</div>
@@ -22,7 +30,7 @@ function Repositories(props) {
                         return(
                             <div key={res.id} className="repo-detail">
                                 <a href={res.svn_url} className="repo-name"><div >{res.name} <i className="fa fa-github-alt" aria-hidden="true"></i></div></a> 
-                                <div className="repo-more">View More <i className="fa fa-plus" aria-hidden="true"></i></div>
+                                <Link to={'/'+res.owner.login + '/' + res.name} className="repo-more">View More <i className="fa fa-plus" aria-hidden="true"></i></Link>
                                 <div className="repo-desc">{res.description}</div>
                                 <div className="repo-forks">Forks: {res.forks}</div>
                                 <div className="repo-stars">Stars: {res.watchers}</div>
