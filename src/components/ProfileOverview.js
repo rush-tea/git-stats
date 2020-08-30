@@ -7,14 +7,18 @@ function ProfileOverview(props) {
         <>
             <div className="logo">
                 <img src={props.profile.avatar_url} alt="logo" />
-            </div>
-            <div className="profileName">
-                <span>{props.profile.name}</span>
-                <span> {props.profile.login} </span>
-                <span>{props.profile.bio}</span>
-                <span>{props.profile.company}</span>
+                <div className="p-name">
+                    <div>{props.profile.name}</div>
+                    <div> {props.profile.login} </div>
+                    {
+                        props.profile.joinedOn && <div className="p-join">Joined on {props.profile.joinedOn} </div>
+                    }
+                </div>
                 {
-                    props.profile.joinedOn && <span>Joined on {props.profile.joinedOn} </span>
+                    props.profile.bio > 0 && <div className="p-bio"><i className="fa fa-crosshairs" aria-hidden="true"></i> {props.profile.bio}</div>
+                }
+                {
+                    props.profile.company > 0 && <div className="p-company"><i className="fa fa-renren" aria-hidden="true"></i> {props.profile.company}</div>
                 }
             </div>
         </>

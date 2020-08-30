@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { Ripple } from 'react-preloaders';
-import Sugar from 'react-preloaders/lib/Sugar/Sugar';
 
 function Activities(props){
     const [activity, setActivity] = useState([]);
