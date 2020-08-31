@@ -1,21 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 
 function Activities(props){
     const [activity, setActivity] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        console.log(props.userName);
-        axios.get("https://api.github.com/users/" + props.userName + "/events/public")
-            .then(res => {
-                setActivity(res.data);
-                setLoading(true);
-            })
-            .catch(err => {
-                console.log(err);
-                setLoading(true);
-            });
+        setActivity(props.events);
+        setLoading(true);
     },[]);
 
     return(
@@ -23,7 +14,7 @@ function Activities(props){
         <div className="act-heading"> Latest Activities</div>
         <div className="activity-scroll" id="act-scrollbar">
             {
-                activity.map(res => {
+                activity.length > 0 && activity.map(res => {
                     var branchIcon = <i className="fa fa-code-fork" aria-hidden="true"></i>
                     var starIcon = <i className="fa fa-star" aria-hidden="true"></i>
                     var issueIcon = <i className="fa fa-bug" aria-hidden="true"></i>

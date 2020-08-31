@@ -15,6 +15,10 @@ function Following(props) {
         axios({
             method: 'get',
             url: 'https://api.github.com/users/' + props.userName + '/following?page=' + pageNo +  '&per_page=30',
+        },{
+            headers: {
+                authorization: "token 870ea8e5e754a23f7dc9d58fa95b0d83b1aa3516"
+            }
         }).then(function (response) {
             setFollowings(response.data);
         });
