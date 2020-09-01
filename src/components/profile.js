@@ -7,7 +7,6 @@ const Followers = React.lazy(() => import('./Followers'));
 const Following = React.lazy(() => import('./Following'));
 const Repositories = React.lazy(() => import('./Repositories'));
 
-console.log(process.env.REACT_APP_API_KEY)
 
 function Profile(props) {
 
@@ -68,7 +67,6 @@ function Profile(props) {
             }
         })
             .then(res => {
-                //console.log(res);
                 setEvents(res.data);
             })
             .catch(err => {
