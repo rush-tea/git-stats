@@ -8,7 +8,11 @@ function LanguageChart(props){
     useEffect(() => {
         console.log(props);
         if(props.ids.profile_id.profileId !== ''){
-            axios.get('https://api.github.com/repos/' + props.ids.profile_id.profileId + '/' + props.ids.repo_name.repoId + '/languages')
+            axios.get('https://api.github.com/repos/' + props.ids.profile_id.profileId + '/' + props.ids.repo_name.repoId + '/languages',{
+                headers: {
+                    authorization: `token ${process.env.REACT_APP_API_KEY}`
+                }
+            })
                 .then(res => {
                     console.log(res);
                     Object.entries(res.data).forEach(([key,value]) => {

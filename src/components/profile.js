@@ -7,6 +7,7 @@ const Followers = React.lazy(() => import('./Followers'));
 const Following = React.lazy(() => import('./Following'));
 const Repositories = React.lazy(() => import('./Repositories'));
 
+console.log(process.env.REACT_APP_API_KEY)
 
 function Profile(props) {
 
@@ -32,22 +33,12 @@ function Profile(props) {
         repos: false
     });
     const [events, setEvents] = useState({});
-    const [page1, setPage1] = useState([]);
-    const [page2, setPage2] = useState([]);
-    const [page3, setPage3] = useState([]);
-    const [page4, setPage4] = useState([]);
-    const [page5, setPage5] = useState([]);
-    const [page6, setPage6] = useState([]);
-    const [page7, setPage7] = useState([]);
-    const [page8, setPage8] = useState([]);
-    const [page9, setPage9] = useState([]);
-    const [page10, setPage10] = useState([]);
 
     const getStats = () => {
         var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         axios.get('https://api.github.com/users/' + props.match.params.profile_id, {
             headers: {
-                authorization: "token 870ea8e5e754a23f7dc9d58fa95b0d83b1aa3516"
+                authorization: `token ${process.env.REACT_APP_API_KEY}`
             }
             })
             .then(res => {
@@ -73,7 +64,7 @@ function Profile(props) {
             });
         axios.get('https://api.github.com/users/' + props.match.params.profile_id + '/events?page=1&per_page=60',{
             headers: {
-                authorization: "token 870ea8e5e754a23f7dc9d58fa95b0d83b1aa3516"
+                authorization: `token ${process.env.REACT_APP_API_KEY}`
             }
         })
             .then(res => {

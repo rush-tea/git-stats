@@ -20,7 +20,11 @@ function MoreRepoDetails(props) {
     });
 
     const getRepoDetails = () => {
-        axios.get("https://api.github.com/repos/" + props.match.params.profile_id + '/' + props.match.params.repo_name)
+        axios.get("https://api.github.com/repos/" + props.match.params.profile_id + '/' + props.match.params.repo_name,{
+            headers: {
+                authorization: `token ${process.env.REACT_APP_API_KEY}`
+            }
+        })
             .then(res => {
                 setActivity(res.data);
                 console.log(res.data.id);

@@ -9,7 +9,7 @@ const DayStats = (props) => {
         var pageNo = 1;
         var res = await axios.get('https://api.github.com/users/'+props.userName+'/events?page=' + pageNo + '&per_page=100', {
             headers: {
-                authorization: "token 870ea8e5e754a23f7dc9d58fa95b0d83b1aa3516"
+                authorization: `"token ${process.env.REACT_APP_KEY}"`
             }
         });
         setEvents([...events,res.data]);
