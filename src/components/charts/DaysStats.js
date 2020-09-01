@@ -6,22 +6,28 @@ const DayStats = (props) => {
 
     const [events, setEvents] = useState([]);
     const [loaded,setLoad] = useState(false);
-    const [Mon,setMon] = useState(0)
-    const [Tue, setTue] = useState(0)
-    const [Wed, setWed] = useState(0)
-    const [Thu, setThu] = useState(0)
-    const [Fri, setFri] = useState(0)
-    const [Sat, setSat] = useState(0)
-    const [Sun, setSun] = useState(0)
+    const [Days, setDays] = useState([0,0,0,0,0,0,0])
 
     const getEvents = async () => {
         var pageNo = 1;
-        var res = await axios.get('https://api.github.com/users/'+props.userName+'/events?page=' + pageNo + '&per_page=100', {
-            headers: {
-                authorization: `"token ${process.env.REACT_APP_KEY}"`
+        var ev = [];
+        while(pageNo<=10){
+            var res = await axios.get('https://api.github.com/users/' + props.userName + '/events?page=' + pageNo + '&per_page=100', {
+                headers: {
+                    authorization: `"token ${process.env.REACT_APP_KEY}"`
+                }
+            });
+            if(pageNo <= 10 && res.data.length > 0){
+                res.data.forEach(res => {
+                    ev.push(res);
+                });
+                pageNo++;
             }
-        });
-        setEvents([...events,res.data]);
+            else{
+                break;
+            }
+        }
+        setEvents(ev);
     }
 
     useEffect(() => {
@@ -29,42 +35,52 @@ const DayStats = (props) => {
     },[])
 
     const dispEvents = (events) => {
+        
         if(events.length > 0 && loaded === false){
-            //console.log(events[0]);
             var daysArray = [0, 0, 0, 0, 0, 0, 0]
-            events[0].forEach(res => {
+            events.forEach(res => {
                 var day = new Date(res.created_at);
                 day = day.toUTCString();
                 day = day.slice(0,3);
-                console.log(day);
                 switch (day) {
                     case "Mon":
                         daysArray[0]++;
+                        break;
                     case "Tue" : 
                         daysArray[1]++;
+                        break;
                     case "Wed":
                         daysArray[2]++;
+                        break;
                     case "Thu":
                         daysArray[3]++;
+                        break;
                     case "Fri":
                         daysArray[4]++;
+                        break;
                     case "Sat":
                         daysArray[5]++;
+                        break;
                     case "Sun":
-                        daysArray[6]++;                    
+                        daysArray[6]++;
+                        break;                    
                     default:
                         break;
                 }
                 //setLoad(true);
             });
-            setMon(daysArray[0]);
-            setTue(daysArray[1]);
-            setWed(daysArray[2]);
-            setThu(daysArray[3]);
-            setFri(daysArray[4]);
-            setSat(daysArray[5]);
-            setSun(daysArray[6]);
+            var sum = daysArray[0] + daysArray[1] + daysArray[2] + daysArray[3] + daysArray[4] +daysArray[5] + daysArray[6]; 
+            var i = 0;
+            daysArray.forEach(data => {
+                data = (data/sum) *100;
+                daysArray[i] = data.toFixed(2);
+                i++; 
+            });
+            setDays(daysArray);
             setLoad(true);
+        }
+        else{
+            return;
         }
     }
 
@@ -74,9 +90,8 @@ const DayStats = (props) => {
         {
             loaded===true && <Bar data={{
                 datasets: [{
-                    data: [Mon,Tue,Wed,Thu,Fri,Sat,Sun]
-                }],
-                labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+                    label: "Contribution %",
+                    data: Days,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -96,6 +111,8 @@ const DayStats = (props) => {
                         'rgba(255, 1, 64, 1)'
                     ],
                     borderWidth: 1
+                }],
+                labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
             }}/>
         }
         </>
