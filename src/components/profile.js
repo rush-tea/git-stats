@@ -61,7 +61,7 @@ function Profile(props) {
                 console.log(err);
                 setLoading(true);
             });
-        axios.get('https://api.github.com/users/' + props.match.params.profile_id + '/events?page=1&per_page=60',{
+        axios.get('https://api.github.com/users/' + props.match.params.profile_id + '/events?page=1&per_page=45',{
             headers: {
                 authorization: `token ${process.env.REACT_APP_API_KEY}`
             }
@@ -120,41 +120,46 @@ function Profile(props) {
         <>
         <header>
                 {getProfile(profile)}
-                <div className="stats">
-                    <button className="stats-item" onClick={() => setTabs({
-                        activity: true,
-                        followers: false,
-                        following: false,
-                        repos: false
-                    })}>Activity</button>
-                    <button className="stats-item" onClick={() => setTabs({
-                        activity: false,
-                        followers: true,
-                        following: false,
-                        repos: false
-                    })} > {stats.followers} Followers</button>
-                    <button className="stats-item" onClick={() => setTabs({
-                        activity: false,
-                        followers: false,
-                        following: true,
-                        repos: false
-                    })}>{stats.following} Following</button>
-                    <button className="stats-item" onClick={() => setTabs({
-                        activity: false,
-                        followers: false,
-                        following: false,
-                        repos: true
-                    })}>{stats.repos} Repositories</button>
-                </div>
         </header>
-        <Suspense fallback = {<div>Loading...</div>} >
-            <div className="activity">
-                {getTabs(tabs, profile.login , events)}
-            </div> 
-        </Suspense>
-        <div>
-            {getDaysStats(profile.login) }
-        </div>       
+        <main>
+                <div className="day-stats">
+                    {getDaysStats(profile.login)}
+                </div>
+                <div className="a-stats"> 
+                    <div className="stats">
+                        <button className="stats-item" onClick={() => setTabs({
+                            activity: true,
+                            followers: false,
+                            following: false,
+                            repos: false
+                        })}>Activity</button>
+                        <button className="stats-item" onClick={() => setTabs({
+                            activity: false,
+                            followers: true,
+                            following: false,
+                            repos: false
+                        })} > {stats.followers} Followers</button>
+                        <button className="stats-item" onClick={() => setTabs({
+                            activity: false,
+                            followers: false,
+                            following: true,
+                            repos: false
+                        })}>{stats.following} Following</button>
+                        <button className="stats-item" onClick={() => setTabs({
+                            activity: false,
+                            followers: false,
+                            following: false,
+                            repos: true
+                        })}>{stats.repos} Repositories</button>
+                    </div>
+                    <Suspense fallback={<div>Loading...</div>} >
+                        <div className="activity">
+                            {getTabs(tabs, profile.login, events)}
+                        </div>
+                    </Suspense>
+                </div> 
+        </main>
+            
         </>
     )
 }
