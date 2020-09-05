@@ -2,6 +2,7 @@ import React, {useState, useEffect, Suspense} from 'react';
 import axios from 'axios';
 import ProfileOverview from './ProfileOverview';
 import DayStats from './charts/DaysStats';
+import Stats from './Stats';
 const Activities = React.lazy(() => import('./Activities'));
 const Followers = React.lazy(() => import('./Followers'));
 const Following = React.lazy(() => import('./Following'));
@@ -32,6 +33,7 @@ function Profile(props) {
         repos: false
     });
     const [events, setEvents] = useState({});
+    const [events1,setEvents1] = useState([]);
 
     const getStats = () => {
         var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -67,7 +69,6 @@ function Profile(props) {
             }
         })
             .then(res => {
-                console.log(res.data);
                 setEvents(res.data);
             })
             .catch(err => {
@@ -75,8 +76,32 @@ function Profile(props) {
             });
     }
 
+    const getEvents = async () => {
+        var pageNo = 1;
+        var ev = [];
+        while (pageNo <= 10) {
+            var res = await axios.get('https://api.github.com/users/' + props.match.params.profile_id + '/events?page=' + pageNo + '&per_page=100', {
+                headers: {
+                    authorization: `"token ${process.env.REACT_APP_KEY}"`
+                }
+            });
+            if (pageNo <= 10 && res.data.length > 0) {
+                res.data.forEach(res => {
+                    //console.log(res);
+                    ev.push(res);
+                });
+                pageNo++;
+            }
+            else {
+                break;
+            }
+        }
+        setEvents1(ev);
+    }
+
     useEffect(() => {
         getStats();
+        getEvents();
     }, []);
 
     const getTabs = (status,userName, events) => {
@@ -110,10 +135,10 @@ function Profile(props) {
         }
     }
 
-    const getDaysStats = (userName) => {
-        if(userName.length > 0){
+    const getDaysStats = (events) => {
+        if(events.length > 0){
             return (
-                <DayStats userName={userName} />
+                <DayStats events={events} />
             )
         }
     }
@@ -121,10 +146,11 @@ function Profile(props) {
         <>
         <header>
                 {getProfile(profile)}
+                {events1.length > 0 && <Stats events={events1} userName={profile} stats={stats} />}
         </header>
         <main>
                 <div className="day-stats">
-                    {getDaysStats(profile.login)}
+                    {events1.length > 0 && getDaysStats(events1)}
                 </div>
                 <div className="a-stats"> 
                     <div className="stats">
@@ -139,19 +165,19 @@ function Profile(props) {
                             followers: true,
                             following: false,
                             repos: false
-                        })} > {stats.followers} Followers</button>
+                        })} >Followers</button>
                         <button className="stats-item" onClick={() => setTabs({
                             activity: false,
                             followers: false,
                             following: true,
                             repos: false
-                        })}>{stats.following} Following</button>
+                        })}>Following</button>
                         <button className="stats-item" onClick={() => setTabs({
                             activity: false,
                             followers: false,
                             following: false,
                             repos: true
-                        })}>{stats.repos} Repositories</button>
+                        })}>Repositories</button>
                     </div>
                     <Suspense fallback={<div>Loading...</div>} >
                         <div className="activity">
