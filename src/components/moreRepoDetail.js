@@ -40,7 +40,7 @@ function MoreRepoDetails(props) {
         setrepoId(props.match.params.repo_name);
         axios.get("https://api.github.com/users/" + props.match.params.profile_id,{
             headers: {
-                authorization: "token 870ea8e5e754a23f7dc9d58fa95b0d83b1aa3516"
+                authorization: `token ${process.env.REACT_APP_API_KEY}`
             }
         })
             .then(res => {
