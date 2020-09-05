@@ -20,7 +20,7 @@ function Profile() {
                         <input type="text" value={name.userName} onChange={changeUsername} placeholder="Enter Username" className="form-control"/>
                     </div>
                     <div  className="text-center">
-                        <button className="btn btn-dark"> <Link to={'/' + name.userName} className="text-light">Search </Link> </button>
+                        <Link to={'/' + name.userName} className="text-light"><button className="btn btn-dark"> Search  </button> </Link>
                     </div>
                 </form>
             </div>
