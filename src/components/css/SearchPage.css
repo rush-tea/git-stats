@@ -1,0 +1,10 @@
+.cntnr{
+    max-width: 500px;
+    width: 90%;
+    margin: 200px auto;
+}
+
+.main-heading{
+    text-align: center;
+    margin-bottom: 60px;
+}
