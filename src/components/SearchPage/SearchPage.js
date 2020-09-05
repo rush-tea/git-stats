@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SearchPageHeader from './SearchPageHeader';
 import './css/SearchPage.css';
-import Footer from './SearchPageFooter';
 
 function Profile() {
     const [name, setUsername] = useState({
@@ -23,7 +22,6 @@ function Profile() {
                     <button className="btn btn-dark"> <Link to={'/' + name.userName} className="text-light">Search </Link> </button>
                 </form>
             </div>
-            <Footer />
         </>
 
     )
