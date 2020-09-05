@@ -19,7 +19,9 @@ function Profile() {
                     <div className="form-group">
                         <input type="text" value={name.userName} onChange={changeUsername} placeholder="Enter Username" className="form-control"/>
                     </div>
-                    <button className="btn btn-dark"> <Link to={'/' + name.userName} className="text-light">Search </Link> </button>
+                    <div  className="text-center">
+                        <button className="btn btn-dark"> <Link to={'/' + name.userName} className="text-light">Search </Link> </button>
+                    </div>
                 </form>
             </div>
         </>
