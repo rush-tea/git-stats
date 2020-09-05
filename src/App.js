@@ -1,6 +1,6 @@
 import React from 'react';
 import Profile from './components/profile';
-import Search from './components/SearchPage';
+import Search from './components/SearchPage/SearchPage';
 import {BrowserRouter, Route} from 'react-router-dom';
 import MoreRepoDetail from './components/moreRepoDetail';
 

@@ -2,12 +2,11 @@ import React, {useState, useEffect} from 'react';
 
 function Activities(props){
     const [activity, setActivity] = useState([]);
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        console.log(props);
         setActivity(props.events);
-        setLoading(true);
-    },[]);
+    },[props]);
 
     return(
         <>

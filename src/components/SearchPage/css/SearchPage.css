@@ -1,0 +1,24 @@
+.cntnr{
+    max-width: 500px;
+    width: 90%;
+    margin: 200px auto;
+}
+
+.main-heading{
+    text-align: center;
+    margin-bottom: 60px;
+}
+footer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fa-heart{
+    color: rgb(236, 45, 61);
+}
+
+hr{
+    width: 75%;
+    color: rgb(32, 32, 32);
+}
