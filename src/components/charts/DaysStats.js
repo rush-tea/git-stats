@@ -44,7 +44,6 @@ const DayStats = (props) => {
             events.forEach(res => {
                 var day = new Date(res.created_at);
                 var hours = day.getHours();
-                console.log(hours);
                 day = day.toUTCString();
                 day = day.slice(0,3);
                 timeArray[hours]++;

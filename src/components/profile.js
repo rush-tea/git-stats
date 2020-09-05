@@ -67,6 +67,7 @@ function Profile(props) {
             }
         })
             .then(res => {
+                console.log(res.data);
                 setEvents(res.data);
             })
             .catch(err => {
