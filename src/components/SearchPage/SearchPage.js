@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SearchPageHeader from './SearchPageHeader';
 import './css/SearchPage.css';
+import Profile from '../profile';
 
 function Search() {
     const [name, setUsername] = useState({
@@ -11,6 +12,7 @@ function Search() {
     const changeUsername = (e) => {
         setUsername({userName: e.target.value})
     }
+
     return (
         <>
             <div className="cntnr">
