@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProfileOverview from './ProfileOverview';
-import {Doughnut} from 'react-chartjs-2';
 import LanguageChart from './charts/languages';
 
 function MoreRepoDetails(props) {
     const [activity, setActivity] = useState({});
-    const [lang, setLang] = useState({});
     const [profileId, setProfileId] = useState('');
     const [repoId, setrepoId] = useState('');
-    const [data, setData] = useState({});
     const [profile, setProfile] = useState({
         avatar_url: '',
         bio: '',

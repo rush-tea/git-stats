@@ -1,5 +1,4 @@
-import React, { useState, useEffect, Suspense } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 
 const DayStats = (props) => {
@@ -10,31 +9,15 @@ const DayStats = (props) => {
     const [Time, setTime] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     const [TimebgColor,setBg] = useState();
 
-    const getEvents = async () => {
-        var pageNo = 1;
+    useEffect(() => {
         var ev = [];
-        while(pageNo<=10){
-            var res = await axios.get('https://api.github.com/users/' + props.userName + '/events?page=' + pageNo + '&per_page=100', {
-                headers: {
-                    authorization: `"token ${process.env.REACT_APP_KEY}"`
-                }
+        if(props.events.length > 0 ){
+            props.events.forEach(res => {
+                ev.push(res);
             });
-            if(pageNo <= 10 && res.data.length > 0){
-                res.data.forEach(res => {
-                    ev.push(res);
-                });
-                pageNo++;
-            }
-            else{
-                break;
-            }
         }
         setEvents(ev);
-    }
-
-    useEffect(() => {
-        getEvents()
-    },[])
+    },[props]);
 
     const dispEvents = (events) => {
         
@@ -44,7 +27,6 @@ const DayStats = (props) => {
             events.forEach(res => {
                 var day = new Date(res.created_at);
                 var hours = day.getHours();
-                console.log(hours);
                 day = day.toUTCString();
                 day = day.slice(0,3);
                 timeArray[hours]++;
