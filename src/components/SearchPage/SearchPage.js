@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SearchPageHeader from './SearchPageHeader';
 import './css/SearchPage.css';
+import Profile from '../profile';
 
-function Profile() {
+function Search() {
     const [name, setUsername] = useState({
         userName: ''
     });
 
     const changeUsername = (e) => {
         setUsername({userName: e.target.value})
-    } 
+    }
+
     return (
         <>
             <div className="cntnr">
@@ -20,7 +22,7 @@ function Profile() {
                         <input type="text" value={name.userName} onChange={changeUsername} placeholder="Enter Username" className="form-control"/>
                     </div>
                     <div  className="text-center">
-                        <button className="btn btn-dark"> <Link to={'/' + name.userName} className="text-light">Search </Link> </button>
+                        <Link to={'/' + name.userName} className="text-light"><button className="btn btn-dark"> Search  </button> </Link>
                     </div>
                 </form>
             </div>
@@ -29,4 +31,4 @@ function Profile() {
     )
 }
 
-export default Profile
+export default Search

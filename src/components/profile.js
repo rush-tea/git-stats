@@ -100,6 +100,7 @@ function Profile(props) {
     }
 
     useEffect(() => {
+        console.log(props);
         getStats();
         getEvents();
     }, []);
