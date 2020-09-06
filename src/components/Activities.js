@@ -9,7 +9,6 @@ function Activities(props){
 
     return(
         <>
-        <div className="act-heading"> Latest Activities</div>
         <div className="activity-scroll" id="act-scrollbar">
             {
                 activity.length > 0 && activity.map(res => {

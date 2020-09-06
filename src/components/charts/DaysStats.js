@@ -75,13 +75,12 @@ const DayStats = (props) => {
             var sum = 0;
             timeArray.forEach(data => {
                 sum = sum + data;
-            })
+            });
             timeArray.forEach(data => {
                 data = (data/sum) * 100;
                 timeArray[i] = data.toFixed(2);
                 i++;
             });
-            console.log(timeArray);
             var bgArray = ['rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 1, 64, 0.2)'];
             var a1 = [];
             var a2 = [];
@@ -145,8 +144,12 @@ const DayStats = (props) => {
                         'rgba(255, 1, 64, 0.2)'
                     ]
                 }],
-                labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+                labels: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
             }} options={{
+                animation: {
+                    duration: 3000,
+                    easing: 'easeInOutQuint',
+                },
                 title: {
                     text: "Daywise Contribution",
                     position: 'top',
@@ -175,32 +178,42 @@ const DayStats = (props) => {
             {
                 loaded === true && <Bar data={{
                     datasets: [{
+                        label: "Contribution % : ",
                         data: Time.a,
                         backgroundColor: TimebgColor,
                     },
                     {
+                        label: "Contribution % : ",
                         data: Time.b,
                         backgroundColor: TimebgColor,
                     },
                         {
+                            label: "Contribution % : ",
                             data: Time.c,
                             backgroundColor: TimebgColor
                         },
                         {
+                            label: "Contribution % : ",
                             data: Time.d,
                             backgroundColor: TimebgColor
                         },
                         {
+                            label: "Contribution % : ",
                             data: Time.e,
                             backgroundColor: TimebgColor
                         },
                         {
+                            label: "Contribution % : ",
                             data: Time.f,
                             backgroundColor: TimebgColor
                         },
                 ],
                 labels: ["Night","Morning","Daytime","Evening"],
                 }} options={{
+                    animation: {
+                        duration: 3000,
+                        easing: 'easeInOutQuint',
+                    },
                     title: {
                         display: true,
                         text: "Timewise Contribution"

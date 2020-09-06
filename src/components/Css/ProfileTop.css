@@ -1,0 +1,62 @@
+.logo img {
+    width: 100px;
+    padding: 10px;
+    border-radius: 150px;
+    border: 1px solid #a8a6a6;
+      justify-self: center;
+}
+
+.logo {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 140px 2fr;
+}
+
+.logo hr {
+    border: 1px solid #e2e2e2;
+    width: fit-content
+}
+
+.p-name {
+    grid-column: 2/3;
+    word-wrap: none;
+}
+
+.p-bio {
+    grid-column: 1/4;
+}
+
+.p-company {
+    grid-column: 1/4;
+}
+
+.header-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+}
+
+@media(max-width: 800px){
+    header {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .header-stats {
+        width: 90%;
+        margin: 10px auto 15px auto;
+    }
+}
+@media(min-width: 800px){
+    header{
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        align-items: center;
+    }
+}
