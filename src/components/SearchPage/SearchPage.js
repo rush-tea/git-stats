@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import SearchPageHeader from './SearchPageHeader';
 import './css/SearchPage.css';
 
-function Profile() {
+function Search() {
     const [name, setUsername] = useState({
         userName: ''
     });
 
     const changeUsername = (e) => {
         setUsername({userName: e.target.value})
-    } 
+    }
     return (
         <>
             <div className="cntnr">
@@ -29,4 +29,4 @@ function Profile() {
     )
 }
 
-export default Profile
+export default Search

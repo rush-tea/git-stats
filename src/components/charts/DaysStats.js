@@ -124,8 +124,19 @@ const DayStats = (props) => {
                 }],
                 labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
             }} options={{
+                title: {
+                    text: "DayWise Contribution",
+                    position: 'top',
+                    display: true
+                },
+                legend: {
+                    display: false
+                },
                 scales: {
                     xAxes: [{
+                        ticks:{
+                            autoSkip: true
+                        },
                         gridLines:{
                             display: false
                         }
@@ -141,16 +152,16 @@ const DayStats = (props) => {
             {
                 loaded === true && <Bar data={{
                     datasets: [{
-                        label: "Contribution %",
                         data: Time,
                         backgroundColor: TimebgColor,
                     }],
 
-                    labels: ["0", "", "", "", "", "6","", "", "", "", "", "12", "", "", "", "", "", "18", "", "", "", "", "", "24"]
+                    labels: ["0","6","18","24"]
                 }} options={{
                     scales:{
                         xAxes:[{
                             ticks: {
+                                autoSkip: true,
                                 min: 6,
                                 maxRotation: 0
                             },
