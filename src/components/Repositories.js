@@ -23,7 +23,7 @@ function Repositories(props) {
         return(
             <><>
                 <a href={res.svn_url} className="repo-name"><div >{res.name} <i className="fa fa-github-alt" aria-hidden="true"></i></div></a>
-                <Link to={'/' + res.owner.login + '/' + res.name} className="repo-more">View More <i className="fa fa-plus" aria-hidden="true"></i></Link>
+                <a href={res.html_url} className="repo-more"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
                 <div className="repo-desc">{res.description}</div>
                 <div className="repo-forks">Forks: {res.forks}</div>
                 <div className="repo-stars">Stars: {res.watchers}</div>
