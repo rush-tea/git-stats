@@ -55,11 +55,6 @@ button :hover{
   grid-template-columns: auto auto auto auto;
   column-gap: 5px;
 }
-.stats-item{
-  justify-self: center;
-  align-self: center;
-  text-align: center;
-}
 .activity {
   border: 1px solid #eeeeee;
   border-radius: 3px;
