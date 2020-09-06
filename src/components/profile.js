@@ -15,7 +15,7 @@ function Profile(props) {
     activity: true,
     follower: false,
     following: false,
-    repo: false
+    repos: false
   });
   const [loaded, setLoading] = useState(false);
   const [stats, setStats] = useState({
@@ -31,12 +31,6 @@ function Profile(props) {
     joinedOn: '',
     name: '',
     login: ''
-  });
-  const [tabs, setTabs] = useState({
-    activity: true,
-    following: false,
-    followers: false,
-    repos: false
   });
   const [events, setEvents] = useState({});
   const [events1, setEvents1] = useState([]);
@@ -85,15 +79,14 @@ function Profile(props) {
   const getEvents = async () => {
     var pageNo = 1;
     var ev = [];
-    while (pageNo <= 10) {
+    while (pageNo) {
       var res = await axios.get('https://api.github.com/users/' + props.match.params.profile_id + '/events?page=' + pageNo + '&per_page=100', {
         headers: {
           authorization: `"token ${process.env.REACT_APP_KEY}"`
         }
       });
-      if (pageNo <= 10 && res.data.length > 0) {
+      if (pageNo < 3 && res.data.length > 0) {
         res.data.forEach(res => {
-          //console.log(res);
           ev.push(res);
         });
         pageNo++;
@@ -106,13 +99,12 @@ function Profile(props) {
   }
 
   useEffect(() => {
-    console.log(props);
     getStats();
     getEvents();
   }, []);
 
   const getTabs = (status, userName, events) => {
-    if (status.followers && userName.length !== 0) {
+    if (status.follower && userName.length !== 0) {
       return (
         <Followers userName={userName} />
       )
@@ -166,12 +158,6 @@ function Profile(props) {
                 activity: true,
                 follower: false,
                 following: false,
-                repo: false
-              })
-              setTabs({
-                activity: true,
-                followers: false,
-                following: false,
                 repos: false
               })
             }}>Activity</button>
@@ -179,12 +165,6 @@ function Profile(props) {
               setIsActive({
                 activity: false,
                 follower: true,
-                following: false,
-                repo: false
-              })
-              setTabs({
-                activity: false,
-                followers: true,
                 following: false,
                 repos: false
               })
@@ -194,34 +174,20 @@ function Profile(props) {
                 activity: false,
                 follower: false,
                 following: true,
-                repo: false
-              })
-              setTabs({
-                activity: false,
-                followers: false,
-                following: true,
                 repos: false
               })
             }}>Following</button>
-            <button className={isActive.repo ? 'btn btn-primary' : 'btn'} onClick={() => {
+            <button className={isActive.repos ? 'btn btn-primary' : 'btn'} onClick={() => {
               setIsActive({
                 activity: false,
                 follower: false,
-                following: false,
-                repo: true
-              })
-              setTabs({
-                activity: false,
-                followers: false,
                 following: false,
                 repos: true
               })
             }}>Repositories</button>
           </div>
-          <Suspense fallback={<div>Loading...</div>} >
-            <div className="activity">
-              {getTabs(tabs, profile.login, events)}
-            </div>
+          <Suspense fallback={<div>Loading...</div>} >          
+              {getTabs(isActive, profile.login, events)}
           </Suspense>
         </div>
       </main>

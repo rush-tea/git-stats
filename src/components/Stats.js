@@ -19,7 +19,6 @@ function Stats(props){
     },[]);
 
     const getStats = (props) => {
-        console.log(props);
         var commits = 0;
         var forks = 0;
         var pr = 0;

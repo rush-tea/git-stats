@@ -75,13 +75,12 @@ const DayStats = (props) => {
             var sum = 0;
             timeArray.forEach(data => {
                 sum = sum + data;
-            })
+            });
             timeArray.forEach(data => {
                 data = (data/sum) * 100;
                 timeArray[i] = data.toFixed(2);
                 i++;
             });
-            console.log(timeArray);
             var bgArray = ['rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 1, 64, 0.2)'];
             var a1 = [];
             var a2 = [];

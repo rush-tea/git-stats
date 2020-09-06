@@ -26,7 +26,6 @@ function Following(props) {
 
     return (
         <>
-        <div className="act-heading">Following</div>
         <div className="f-div">
         {
             followings.map(res => {

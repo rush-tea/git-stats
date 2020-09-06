@@ -1,0 +1,30 @@
+.fa-github-alt {
+    color: #5eac72;
+}
+
+.fa-code-fork {
+    color: #17b93f;
+}
+
+.fa-plus-circle {
+    color: #17b93f;
+}
+
+.fa-star {
+    color: #e7e40f;
+}
+
+.fa-trash {
+    color: #d30909;
+}
+.activity-scroll li {
+    list-style-type: none;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 15px;
+}
+.activity-scroll {
+    overflow-y: scroll;
+    height: 470px;
+    font-size: 80%;
+}
+

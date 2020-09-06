@@ -1,0 +1,37 @@
+@media (max-width: 800px){
+    .day-stats {
+        width: 85%;
+        margin: 0 5% 0 5%;
+    }
+
+    .day-stats div {
+        padding: 10px 0 20px 0;
+    }
+}
+
+@media (min-width: 800px){
+    .day-stats {
+        display: flex;
+    }
+
+    .day-stats div {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1200px){
+    .day-stats {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+    }
+
+    .day-stats div {
+        border: 1px solid #f0f0f0;
+        border-radius: 5px;
+        width: 100%;
+        padding: 20px 0 20px 0;
+    }
+}

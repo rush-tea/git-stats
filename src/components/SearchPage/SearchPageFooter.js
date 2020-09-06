@@ -1,5 +1,4 @@
 import React from 'react';
-import './css/SearchPage.css'
 
 function Footer(){
     return(

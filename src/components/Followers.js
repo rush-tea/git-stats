@@ -26,7 +26,6 @@ function Followers(props) {
 
     return (
         <>
-        <div className="act-heading">Followers</div>
         <div className="f-div">
             {
                 followers.map(res => {
