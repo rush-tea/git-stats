@@ -144,10 +144,10 @@ function Profile(props) {
   return (
     <>
       <header>
-      {
-          profile.avatar_url.length > 0 &&  getProfile(profile) 
-      }
-        
+        {
+          profile.avatar_url.length > 0 && getProfile(profile)
+        }
+
         {events1.length > 0 && <Stats events={events1} userName={profile} stats={stats} />}
       </header>
       <main>
@@ -171,7 +171,7 @@ function Profile(props) {
                 following: false,
                 repos: false
               })
-            }} >Followers</button>
+            }} >Followers  <span className="badge badge-light">{stats.followers}</span></button>
             <button className={isActive.following ? 'btn btn-primary' : 'btn'} onClick={() => {
               setIsActive({
                 activity: false,
@@ -179,7 +179,7 @@ function Profile(props) {
                 following: true,
                 repos: false
               })
-            }}>Following</button>
+            }}>Followings  <span className="badge badge-light">{stats.following}</span></button>
             <button className={isActive.repos ? 'btn btn-primary' : 'btn'} onClick={() => {
               setIsActive({
                 activity: false,
@@ -187,10 +187,10 @@ function Profile(props) {
                 following: false,
                 repos: true
               })
-            }}>Repositories</button>
+            }}>Repositories  <span className="badge badge-light">{stats.repos}</span></button>
           </div>
-          <Suspense fallback={<div>Loading...</div>} >          
-              {getTabs(isActive, profile.login, events)}
+          <Suspense fallback={<div>Loading...</div>} >
+            {getTabs(isActive, profile.login, events)}
           </Suspense>
         </div>
       </main>
