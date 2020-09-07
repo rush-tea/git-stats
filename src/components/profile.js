@@ -18,6 +18,7 @@ function Profile(props) {
     repos: false
   });
   const [loaded, setLoading] = useState(false);
+  const [lastDate, setLastDate] = useState('');
   const [stats, setStats] = useState({
     followers: 0,
     following: 0,
@@ -96,6 +97,9 @@ function Profile(props) {
       }
     }
     setEvents1(ev);
+    var LastDate = new Date(ev[ev.length - 1].created_at);
+    LastDate = LastDate.toUTCString().slice(0, 16);
+    setLastDate(LastDate);
   }
 
   useEffect(() => {
@@ -147,8 +151,10 @@ function Profile(props) {
         {
           profile.avatar_url.length > 0 && getProfile(profile)
         }
+        <div className="headData">
+          {events1.length > 0 && <Stats events={events1} userName={profile} stats={stats} lastDate={lastDate} />}
+        </div>
 
-        {events1.length > 0 && <Stats events={events1} userName={profile} />}
       </header>
       <main>
         <div className="day-stats">
