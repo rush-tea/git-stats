@@ -77,7 +77,6 @@ header{
 }
 
 .header-stats {
-    background-color: #757575;
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 10px;
@@ -85,7 +84,6 @@ header{
 }
 
 .header-stats div{
-    background-color: #e8e8e9;
     color: #4c4c4d;
 }
 
