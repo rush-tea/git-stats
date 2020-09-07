@@ -2,6 +2,7 @@ body{
     height: 100vh;
 }
 .cntnr{
+    grid-column: 1/4;
     max-width: 500px;
     height: 80vh;
     width: 80%;

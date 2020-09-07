@@ -4,6 +4,10 @@ import { Bar } from 'react-chartjs-2';
 const DayStats = (props) => {
 
     const [events, setEvents] = useState([]);
+    const [prodDays, setProdDays] = useState({
+        firstDay: '',
+        secondDay: ''
+    });
     const [loaded,setLoad] = useState(false);
     const [Days, setDays] = useState([0,0,0,0,0,0,0])
     const [Time, setTime] = useState({
@@ -29,6 +33,7 @@ const DayStats = (props) => {
     const dispEvents = (events) => {
         
         if(events.length > 0 && loaded === false){
+            var DayName = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
             var daysArray = [0, 0, 0, 0, 0, 0, 0]
             var timeArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0];
             events.forEach(res => {
@@ -118,6 +123,21 @@ const DayStats = (props) => {
                 f: a6
             });
             setDays(daysArray);
+            var DaySort = daysArray;
+            DaySort.sort((a, b) => a - b);
+            var index1,index2;
+            daysArray.forEach(function(value, i){
+                if(DaySort[6] === value){
+                    index1 = i;
+                }
+                if(DaySort[5] === value){
+                    index2 = i;
+                }
+            });
+            setProdDays({
+                firstDay: DayName[index1],
+                secondDay: DayName[index2]
+            });
             setLoad(true);
         }
         else{
@@ -173,6 +193,10 @@ const DayStats = (props) => {
                 }
             }}/>
         }
+        {
+                    loaded === true && <div> Most Productive Days in recent Days are <span>{prodDays.firstDay}</span> and <span>{prodDays.secondDay}</span></div>
+        }
+        
         </div>
         <div>
             {
