@@ -11,7 +11,7 @@
 
 @media (min-width: 800px){
     .day-stats {
-        display: flex;
+        width: 100%;
     }
 
     .day-stats div {

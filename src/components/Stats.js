@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 function Stats(props){
     
+    const [lastDate,setLastDate] = useState('');
     const [load, setLoad] = useState(false);
     const [statsData, setStats] = useState({
         commitNo: 0,
@@ -19,6 +20,7 @@ function Stats(props){
     },[]);
 
     const getStats = (props) => {
+        console.log(props);
         var commits = 0;
         var forks = 0;
         var pr = 0;
@@ -47,16 +49,18 @@ function Stats(props){
 
     return(
         <>
+        
         {
             load === true && <div className="header-stats">
-                    <div>No of Public commits : {statsData.commitNo}</div>
+                    <div>Public commits : {statsData.commitNo}</div>
                     <div>Followers :     {statsData.followers}</div> 
-                    <div>No of Forks :   {statsData.forkNo}</div>
+                    <div>Forks :   {statsData.forkNo}</div>
                     <div>Followings :    {statsData.following}</div>
-                    <div>No of PRs :     {statsData.prNo}</div>
+                    <div>PRs :     {statsData.prNo}</div>
                     <div>Public Repositories :  {statsData.rePos}</div>
                 </div> 
         }
+            <div className="lastDate">Contribution Statistics are from {props.lastDate}</div>
         </>
     )
 }
