@@ -148,7 +148,7 @@ function Profile(props) {
           profile.avatar_url.length > 0 && getProfile(profile)
         }
 
-        {events1.length > 0 && <Stats events={events1} userName={profile} stats={stats} />}
+        {events1.length > 0 && <Stats events={events1} userName={profile} />}
       </header>
       <main>
         <div className="day-stats">
