@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-<<<<<<< HEAD
 function Stats(props) {
 
-||||||| cb9b435
-function Stats(props){
-
-=======
-function Stats(props){
-
-    const [lastDate,setLastDate] = useState('');
->>>>>>> d68d2ed2f47a3ca7300d0ac7e71a877f3bf3a67c
+    const [lastDate, setLastDate] = useState('');
     const [load, setLoad] = useState(false);
     const [statsData, setStats] = useState({
         commitNo: 0,
