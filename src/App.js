@@ -1,9 +1,9 @@
-import React from 'react';
-import Profile from './components/profile';
+import React, { Suspense } from 'react';
 import Search from './components/SearchPage/SearchPage';
 import MoreRepoDetails from './components/MoreRepoDetails'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Footer from './components/SearchPage/SearchPageFooter';
+const Profile = React.lazy(() => import('./components/profile'));
 
 function App() {
   return (
@@ -13,6 +13,9 @@ function App() {
           <Route exact path="/" component={Search} />
           <Route exact path="/:profile_id" component={Profile} />
           <Route exact path="/:profile_id/:repo_name" component={MoreRepoDetails} />
+          <Suspense fallback={<div>Loading...</div>} >
+            <Route exact path="/:profile_id" component={Profile} />
+          </Suspense>
         </Switch>
         <Footer />
       </div>
