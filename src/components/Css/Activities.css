@@ -25,5 +25,7 @@
 .activity-scroll {
     overflow-y: scroll;
     font-size: 80%;
+    height: 410px;
+
 }
 

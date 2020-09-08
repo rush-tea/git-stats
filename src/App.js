@@ -1,9 +1,11 @@
 import React, { Suspense } from 'react';
-import Search from './components/SearchPage/SearchPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Search from './components/SearchPage/SearchPage';
 import Footer from './components/SearchPage/SearchPageFooter';
-const Profile = React.lazy(() => import('./components/profile'));
 import MoreRepoDetails from './components/MoreRepoDetails'
+const Profile = React.lazy(() => import('./components/profile'));
+
+
 function App() {
   return (
     <BrowserRouter>
