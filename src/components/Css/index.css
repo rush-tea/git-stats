@@ -33,19 +33,33 @@ button :hover{
 }
 
 .stats{
-    padding: 7px 4px 7px 4px;
-    border-bottom: 1px solid #dfdfdf;
+    border-bottom: 1px solid #e0e0f0;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 .stats .btn{
-  padding: 3px 7px 3px 7px;
-  font-size: 80%;
+  font-size: 75%;
+  padding: 8px 3% 8px 3%;
+}
+.stats .btn-primary-right{
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.stats .btn-primary-left{
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.stats .btn-primary{
+  border-color: #e0e0e0;
+  color: #636262;
+  background-color: #e0e0e0 !important;
 }
 .a-stats{
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid #ebecec;
+  border: 1px solid #e0e0e0;
   border-radius: 5px;
 }
 
@@ -60,8 +74,16 @@ button :hover{
 }
 
 @media (max-width: 800px){
+  body{
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  main{
+    width: 100%;
+  }
   .a-stats{
-    width: 90%;
+    width: 100%;
   }
 }
 @media(min-width: 800px){
