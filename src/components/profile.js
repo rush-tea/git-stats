@@ -1,8 +1,8 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import axios from 'axios';
-import ProfileOverview from './ProfileOverview';
-import DayStats from './charts/DaysStats';
-import Stats from './Stats';
+const ProfileOverview = React.lazy(() => import('./ProfileOverview'));
+const DayStats = React.lazy(() => import('./charts/DaysStats'));
+const Stats = React.lazy(() => import('./Stats'));
 const Activities = React.lazy(() => import('./Activities'));
 const Followers = React.lazy(() => import('./Followers'));
 const Following = React.lazy(() => import('./Following'));
@@ -148,18 +148,26 @@ function Profile(props) {
   return (
     <>
       <header>
-        {
-          profile.avatar_url.length > 0 && getProfile(profile)
-        }
-        <div className="headData">
-          {events1.length > 0 && <Stats events={events1} userName={profile} stats={stats} lastDate={lastDate} />}
-        </div>
+        <Suspense fallback={<div>Loading...</div>} >
+          {
+            profile.avatar_url.length > 0 && getProfile(profile)
+          }
+        </Suspense>
+        <Suspense fallback={<div>Loading...</div>} >
+          <div className="headData">
+            {events1.length > 0 && <Stats events={events1} userName={profile} stats={stats} lastDate={lastDate} />}
+          </div>
+        </Suspense>
+
 
       </header>
       <main>
-        <div className="day-stats">
-          {events1.length > 0 && getDaysStats(events1)}
-        </div>
+        <Suspense fallback={<div>Loading...</div>} >
+          <div className="day-stats">
+            {events1.length > 0 && getDaysStats(events1)}
+          </div>
+        </Suspense>
+
         <div className="a-stats">
           <div className="stats">
             <button className={isActive.activity ? 'btn btn-primary' : 'btn'} onClick={() => {

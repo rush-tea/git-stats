@@ -21,7 +21,7 @@
 
 @media (min-width: 1200px){
     .day-stats {
-        width: 80%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-items: center;
@@ -29,9 +29,13 @@
     }
 
     .day-stats div {
+        margin: 10px 0 10px 0;
         border: 1px solid #f0f0f0;
         border-radius: 5px;
         width: 100%;
         padding: 20px 0 20px 0;
+    }
+    .day-stats canvas{
+        margin: 0 auto 0 auto;
     }
 }
