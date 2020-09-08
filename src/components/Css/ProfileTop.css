@@ -10,7 +10,7 @@
 }
 
 .logo {
-    background-color: #f1f1f3;
+    background-color: #f7f7f7;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
     align-items: center;
@@ -61,7 +61,7 @@
     color: #757575;
 }
 .headData{
-    background-color: #f1f1f3;
+    background-color: #f7f7f7;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
 }
@@ -96,6 +96,7 @@ header{
     }
 
     .header-stats {
+        font-size: 90%;
         width: 90%;
         margin: 0 auto 0 auto;
     }

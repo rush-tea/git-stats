@@ -3,7 +3,12 @@
         font-size: 60% !important;
     }
     .day-stats canvas{
-        margin: 0 auto 0 auto;
+        margin: 10px auto 0 auto;
+    }
+    .day-stats .charts{
+        border: 1px solid #e0e0e0;
+        margin: 10px 0px 20px 0px;
+        border-radius: 5px;
     }
 }
 
@@ -39,14 +44,14 @@
 }
 
 .day-stats .charts div {
-    background-color: #f1f1f3;
+    background-color: #f7f7f7;
     padding: 10px 0px 10px 10px;
     font-size: 90%;
-    color: #6b6a6a;
-    border-bottom: 1px solid #e0e0e0;
+    color: #858484;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom: 1px solid #f6f6fc;
 }
 .day-stats .charts div span{
-    color: #664daa;
-    background-color: #e0d5fd;
-    padding: 2px 5px 2px 5px;
+    color: #435d96;
 }

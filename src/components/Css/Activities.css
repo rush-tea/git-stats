@@ -17,10 +17,14 @@
 .fa-trash {
     color: #d30909;
 }
-.activity-scroll li {
-    list-style-type: none;
+.activity-scroll div {
     border-bottom: 1px solid #f0f0f0;
     padding: 15px;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+.activity-scroll div:hover{
+    background-color: #f0f0f0;
 }
 .activity-scroll {
     overflow-y: scroll;

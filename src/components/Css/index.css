@@ -17,9 +17,9 @@ code {
 }
 
 button{
-  color: rgb(83, 83, 207);
-  background-color: white;
   border: none;
+  color: #3d3d3d;
+  background-color: white;
   appearance: none;
 }
 
@@ -28,18 +28,18 @@ a{
   color: rgb(83, 83, 207);
 }
 
-button :hover{
-  color: black;
-}
-
 .stats{
-    border-bottom: 1px solid #e0e0f0;
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid #e0e0e0;
 }
 .stats .btn{
+  outline: none !important;
   font-size: 75%;
-  padding: 8px 3% 8px 3%;
+  transition: none;
+}
+.stats .btn:hover{
+  background-color: #f7f7f7;
 }
 .stats .btn-primary-right{
   border-top-left-radius: 0px;
@@ -51,12 +51,21 @@ button :hover{
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px;
 }
+.stats .btn-primary-middle{
+  border-radius: 0px !important;
+}
 .stats .btn-primary{
-  border-color: #e0e0e0;
-  color: #636262;
+  outline: none;
+  color: #3d3d3d;
   background-color: #e0e0e0 !important;
+  border-color: #e0e0e0;
+}
+.stats .btn-primary:focus{
+  box-shadow: none;
 }
 .a-stats{
+  border-spacing: 0px;
+  border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid #e0e0e0;
