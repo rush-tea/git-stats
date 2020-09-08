@@ -7,7 +7,10 @@ function Stats(props) {
     const [statsData, setStats] = useState({
         commitNo: 0,
         forkNo: 0,
-        prNo: 0
+        prNo: 0,
+        followers: 0,
+        following: 0,
+        rePos: 0
     });
 
     useEffect(() => {
@@ -37,6 +40,9 @@ function Stats(props) {
             commitNo: commits,
             forkNo: forks,
             prNo: pr,
+            followers: props.stats.followers,
+            following: props.stats.following,
+            rePos: props.stats.repos
         });
         setLoad(true);
     }
