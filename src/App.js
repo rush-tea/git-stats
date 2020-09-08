@@ -12,11 +12,12 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/" component={Search} />
+          <Route exact path="/:profile_id/:repo_name" component={MoreRepoDetails} />
           <Suspense fallback={<div>Loading...</div>} >
             <Route exact path="/:profile_id" component={Profile} />
 
           </Suspense>
-          <Route exact path="/:profile_id/:repo_name" component={MoreRepoDetails} />
+
         </Switch>
         <Footer />
       </div>
