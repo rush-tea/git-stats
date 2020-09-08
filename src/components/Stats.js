@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-function Stats(props){
-    
-    const [lastDate,setLastDate] = useState('');
+function Stats(props) {
+
+    const [lastDate, setLastDate] = useState('');
     const [load, setLoad] = useState(false);
     const [statsData, setStats] = useState({
         commitNo: 0,
@@ -14,10 +14,10 @@ function Stats(props){
     });
 
     useEffect(() => {
-        if(props.events.length > 0 ){
+        if (props.events.length > 0) {
             getStats(props);
         }
-    },[]);
+    }, []);
 
     const getStats = (props) => {
         console.log(props);
@@ -26,13 +26,13 @@ function Stats(props){
         var pr = 0;
         var userName = props.userName.login;
         props.events.forEach(res => {
-            if(res.type === "PushEvent"){
+            if (res.type === "PushEvent") {
                 commits = res.payload.size + commits;
             }
-            if(res.type === "ForkEvent"){
+            if (res.type === "ForkEvent") {
                 forks++;
             }
-            if(res.type === "PullRequestEvent" && res.actor.login === userName && res.payload.action === "opened"){
+            if (res.type === "PullRequestEvent" && res.actor.login === userName && res.payload.action === "opened") {
                 pr++;
             }
         });
@@ -47,19 +47,19 @@ function Stats(props){
         setLoad(true);
     }
 
-    return(
+    return (
         <>
-        
-        {
-            load === true && <div className="header-stats">
+
+            {
+                load === true && <div className="header-stats">
                     <div>Public commits : {statsData.commitNo}</div>
-                    <div>Followers :     {statsData.followers}</div> 
+                    <div>Followers :     {statsData.followers}</div>
                     <div>Forks :   {statsData.forkNo}</div>
                     <div>Followings :    {statsData.following}</div>
                     <div>PRs :     {statsData.prNo}</div>
                     <div>Public Repositories :  {statsData.rePos}</div>
-                </div> 
-        }
+                </div>
+            }
             <div className="lastDate">Contribution Statistics are from {props.lastDate}</div>
         </>
     )
