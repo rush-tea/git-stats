@@ -1,11 +1,9 @@
 @media (max-width: 800px){
-    .day-stats {
-        width: 85%;
-        margin: 0 5% 0 5%;
+    .day-stats .charts div{
+        font-size: 60% !important;
     }
-
-    .day-stats div {
-        padding: 10px 0 20px 0;
+    .day-stats canvas{
+        margin: 0 auto 0 auto;
     }
 }
 
@@ -28,14 +26,27 @@
         align-items: center;
     }
 
-    .day-stats div {
+    .day-stats .charts {
         margin: 10px 0 10px 0;
-        border: 1px solid #f0f0f0;
+        border: 1px solid #e0e0e0;
         border-radius: 5px;
         width: 100%;
-        padding: 20px 0 20px 0;
+        padding: 0px 0 20px 0;
     }
     .day-stats canvas{
         margin: 0 auto 0 auto;
     }
+}
+
+.day-stats .charts div {
+    background-color: #f1f1f3;
+    padding: 10px 0px 10px 10px;
+    font-size: 90%;
+    color: #6b6a6a;
+    border-bottom: 1px solid #e0e0e0;
+}
+.day-stats .charts div span{
+    color: #664daa;
+    background-color: #e0d5fd;
+    padding: 2px 5px 2px 5px;
 }
