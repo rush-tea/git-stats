@@ -1,11 +1,11 @@
 import React from 'react'
+import CommitList from './commitList'
 
 
 const MoreRepoDetails = (props) => {
     console.log(props);
     return (
-
-        <div>Hello</div>
+        < CommitList data={props} />
     );
 }
 

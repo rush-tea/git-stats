@@ -1,0 +1,15 @@
+
+.commit-month-list-whole{
+    display: flex;
+}
+
+.month-heading{
+    text-align: center;
+}
+
+.commit-month-list{
+    display: grid;
+    grid-template-rows: repeat(5,1fr);
+    grid-template-columns: repeat(7,1fr);
+    margin: 10px;
+}

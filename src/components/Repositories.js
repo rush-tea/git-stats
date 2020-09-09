@@ -22,7 +22,11 @@ function Repositories(props) {
         console.log(res);
         return (
             <>
-                <Link to={`/${props.userName}/${res.name}`} className="repo-name">{res.name}</Link>
+                <Link to={
+                    {
+                        pathname: `/${props.userName}/${res.name}`,
+                    }
+                } className="repo-name">{res.name}</Link>
                 <a href={res.html_url} className="repo-more">View on GitHub<i className="fa fa-github-alt" aria-hidden="true"></i></a>
                 <div className="repo-desc">{res.description}</div>
                 <div className="repo-forks">Forks: {res.forks}</div>

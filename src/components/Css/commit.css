@@ -1,0 +1,10 @@
+.commit{
+    border: 0px solid #333;
+    width: 20px;
+    height : 20px;
+    border-radius: 5px;
+    margin : 3px;
+    font-size: 22px;
+    text-align: center;
+    font-weight: 530;
+}
