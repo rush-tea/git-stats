@@ -45,7 +45,7 @@ function Profile(props) {
   const [events1, setEvents1] = useState([]);
 
   const getStats = async () => {
-    if(loaded === true){
+    if (loaded === true) {
       var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       axios.get('https://api.github.com/users/' + props.match.params.profile_id, {
         headers: {
@@ -146,7 +146,7 @@ function Profile(props) {
     if (profile.login.length !== 0) {
       return (
         <><>
-        <ProfileOverview profile={profile}/>
+          <ProfileOverview profile={profile} />
         </></>
       )
     }
@@ -161,8 +161,8 @@ function Profile(props) {
   }
 
   const getContent = (profile, events, events1, lastDate, loaded, isActive, stats, overHead) => {
-    if(loaded === false){
-      return(
+    if (loaded === false) {
+      return (
         <><>
           <header>
             {
@@ -217,13 +217,13 @@ function Profile(props) {
         </></>
       )
     }
-    else{
+    else {
       return <PuffLoader color="#4A90E2" css={overHead} loading={loaded} />
     }
   }
   return (
     <>
-    {getContent(profile,events,events1,lastDate,loaded,isActive,stats,overHead)}
+      {getContent(profile, events, events1, lastDate, loaded, isActive, stats, overHead)}
     </>
   )
 }
