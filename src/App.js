@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Search from './components/SearchPage/SearchPage';
 import Footer from './components/SearchPage/SearchPageFooter';
 import Profile from './components/profile';
-
 import MoreRepoDetails from './components/MoreRepoDetails';
 
 
