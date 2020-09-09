@@ -109,6 +109,10 @@ function Profile(props) {
       setLastDate(LastDate);
       setLoading(false);
     }
+    setEvents1(ev);
+    var LastDate = new Date(ev[ev.length - 1].created_at);
+    LastDate = LastDate.toUTCString().slice(0, 16);
+    setLastDate(LastDate);
   }
 
   useEffect(() => {
