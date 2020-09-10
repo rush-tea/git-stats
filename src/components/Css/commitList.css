@@ -2,8 +2,7 @@
     display: flex;
     flex-direction: column;
     width: 90%;
-    margin:0 auto;
-    
+    margin:0 auto;    
 }
 .commit-list{
     display: grid;
@@ -13,11 +12,17 @@
 }
 .heading{
     text-align: center;
+    position: relative;
+    left:70px;
 }
 
 @media (max-width:600px){
     .commit-list{
         grid-template-rows: repeat(6,1fr);
         grid-template-columns: repeat(2,1fr); 
+    }
+    .heading{
+        left:0px;
+        font-size: 30px;
     }
 }

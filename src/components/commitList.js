@@ -5,6 +5,7 @@ import CommitMonthList from './commitMonthList';
 
 const CommitList = (props) => {
     const [commitdata, setCommitData] = useState([]);
+    const [isloading, setIsLoading] = useState(true);
     useEffect(() => {
         axios.get(`https://api.github.com/repos/${props.data.match.params.profile_id}/${props.data.match.params.repo_name}/commits?per_page=100`, {
             headers: {
@@ -22,6 +23,7 @@ const CommitList = (props) => {
                         };
                     })
                 })
+                setIsLoading(false);
             })
             .catch(err => console.log(err));
     }, [])
@@ -95,6 +97,7 @@ const CommitList = (props) => {
     return (
         <div className="commit-list-whole">
             <h1 className="heading">Contributions in 2020</h1>
+            {isloading ? 'data loading...' : ''}
             <div className="commit-list">
                 {<CommitMonthList key={0} daydata={DayData0} />}
                 {<CommitMonthList key={1} daydata={DayData1} />}
@@ -109,6 +112,8 @@ const CommitList = (props) => {
                 {<CommitMonthList key={10} daydata={DayData10} />}
                 {<CommitMonthList key={11} daydata={DayData11} />}
             </div>
+            <br />
+            <p>* : Current Date</p>
         </div>
 
     );
