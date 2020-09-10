@@ -8,3 +8,11 @@
     text-align: center;
     font-weight: 530;
 }
+
+@media (max-width:600px){
+    .commit{
+        width:15px;
+        height: 15px;
+        margin : 1px;
+    }
+}
