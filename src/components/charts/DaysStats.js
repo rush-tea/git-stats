@@ -11,8 +11,7 @@ const DayStats = (props) => {
 
     const [events, setEvents] = useState([]);
     const [prodDays, setProdDays] = useState({
-        firstDay: '',
-        secondDay: ''
+        firstDay: ''
     });
     const [loaded,setLoaded] = useState(false);
     const [Days, setDays] = useState([0,0,0,0,0,0,0])
@@ -40,8 +39,9 @@ const DayStats = (props) => {
         
         if(events.length > 0 && loaded === false){
             var DayName = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-            var daysArray = [0, 0, 0, 0, 0, 0, 0]
+            var daysArray = []
             var timeArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0];
+            var Mon = 0,Tue = 0,Wed = 0,Thur=0,Fri = 0,Sat= 0,Sun = 0;
             events.forEach(res => {
                 var day = new Date(res.created_at);
                 var hours = day.getHours();
@@ -50,39 +50,61 @@ const DayStats = (props) => {
                 timeArray[hours]++;
                 switch (day) {
                     case "Mon":
-                        daysArray[0]++;
+                        //daysArray[0]++;
+                        Mon++;
                         break;
                     case "Tue" : 
-                        daysArray[1]++;
+                        //daysArray[1]++;
+                        Tue++;
                         break;
                     case "Wed":
-                        daysArray[2]++;
+                        //daysArray[2]++;
+                        Wed++;
                         break;
                     case "Thu":
-                        daysArray[3]++;
+                        //daysArray[3]++;
+                        Thur++;
                         break;
                     case "Fri":
-                        daysArray[4]++;
+                        //daysArray[4]++;
+                        Fri++;
                         break;
                     case "Sat":
-                        daysArray[5]++;
+                        //daysArray[5]++;
+                        Sat++;
                         break;
                     case "Sun":
-                        daysArray[6]++;
+                        //daysArray[6]++;
+                        Sun++;
                         break;                    
                     default:
                         break;
                 }
                 //setLoad(true);
             });
-            var sum = daysArray[0] + daysArray[1] + daysArray[2] + daysArray[3] + daysArray[4] +daysArray[5] + daysArray[6]; 
-            var i = 0;
-            daysArray.forEach(data => {
-                data = (data/sum) *100;
-                daysArray[i] = data.toFixed(2);
-                i++; 
+            [Mon, Tue, Wed, Thur, Fri, Sat, Sun].forEach((data) => {
+                daysArray.push(data);
+            })
+            console.log(daysArray);
+            var sum = Mon + Tue + Wed +Thur + Fri + Sat + Sun;
+            setDays([((Mon/sum)*100).toFixed(2), ((Tue/sum)*100).toFixed(2), ((Wed/sum)*100).toFixed(2), ((Thur/sum)*100).toFixed(2), ((Fri/sum)*100).toFixed(2), ((Sat/sum)*100).toFixed(2), ((Sun/sum)*100).toFixed(2)]);
+            var arr1 = [Mon, Tue, Wed, Thur, Fri, Sat, Sun];
+            var max1 = arr1.reduce(function(a,b) {
+                return Math.max(a,b);
             });
-            i=0;
+            console.log(max1);
+            var index1;
+            for (let i = 0; i < arr1.length; i++) {
+                if(max1 === arr1[i]){
+                    index1 = i;
+                    break;
+                }
+            }
+            console.log(arr1);
+            setProdDays({
+                firstDay: DayName[index1]
+            });
+            var i = 0;
             var sum = 0;
             timeArray.forEach(data => {
                 sum = sum + data;
@@ -99,6 +121,7 @@ const DayStats = (props) => {
             var a4 = [];
             var a5 = [];
             var a6 = [];
+            //console.log(daysArray);
             for (let i = 0; i < timeArray.length; i++) {
                 if(i%6 === 0){
                     a1.push(timeArray[i]);
@@ -128,22 +151,9 @@ const DayStats = (props) => {
                 e: a5,
                 f: a6
             });
-            setDays(daysArray);
-            var DaySort = daysArray;
-            DaySort.sort((a, b) => a - b);
-            var index1,index2;
-            daysArray.forEach(function(value, i){
-                if(DaySort[6] === value){
-                    index1 = i;
-                }
-                if(DaySort[5] === value){
-                    index2 = i;
-                }
-            });
-            setProdDays({
-                firstDay: DayName[index1],
-                secondDay: DayName[index2]
-            });
+            //console.log(daysArray);
+ 
+            
             setLoaded(true);
         }
         else{
@@ -157,7 +167,7 @@ const DayStats = (props) => {
                 <><>
                     <div className="charts">
                         {
-                            loaded === true && <div> Most Productive Days in recent Days are <span>{prodDays.firstDay}</span> and <span>{prodDays.secondDay}</span></div>
+                            loaded === true && <div>You are more productive on <span>{prodDays.firstDay}</span> in recent Days.</div>
                         }
                         {
                             loaded === true && <Bar data={{
@@ -210,32 +220,32 @@ const DayStats = (props) => {
                         {
                             loaded === true && <Bar data={{
                                 datasets: [{
-                                    label: "Contribution % : ",
+                                    label: "Contribution % ",
                                     data: Time.a,
                                     backgroundColor: TimebgColor,
                                 },
                                 {
-                                    label: "Contribution % : ",
+                                    label: "Contribution % ",
                                     data: Time.b,
                                     backgroundColor: TimebgColor,
                                 },
                                 {
-                                    label: "Contribution % : ",
+                                    label: "Contribution % ",
                                     data: Time.c,
                                     backgroundColor: TimebgColor
                                 },
                                 {
-                                    label: "Contribution % : ",
+                                    label: "Contribution % ",
                                     data: Time.d,
                                     backgroundColor: TimebgColor
                                 },
                                 {
-                                    label: "Contribution % : ",
+                                    label: "Contribution % ",
                                     data: Time.e,
                                     backgroundColor: TimebgColor
                                 },
                                 {
-                                    label: "Contribution % : ",
+                                    label: "Contribution % ",
                                     data: Time.f,
                                     backgroundColor: TimebgColor
                                 },
