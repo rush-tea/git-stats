@@ -6,12 +6,12 @@ const CommitMonthList = (props) => {
 
     const month = ["January", "February", "March", "April", "May", "June", "July", "August", "Sepetember", "October", "November", "December"];
 
-    const CommitData = props.daydata.map((commitdata) => {
+    const CommitData = props.dydata.map((commitdata) => {
         return <Commit key={commitdata.id} dydata={commitdata} />
     })
     return (
         <div className="commit-list-month-whole">
-            <h3 className="month-heading">{month[props.daydata[0].month]}</h3>
+            <h3 className="month-heading">{month[props.dydata[0].month]}</h3>
             <div className="commit-month-list">
                 {CommitData}
             </div>
