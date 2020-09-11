@@ -127,7 +127,7 @@ function Profile(props) {
     }
     else if (status.following && userName.length !== 0) {
       return (
-        <Following userName={userName} />
+        <Following userName={userName} stats={stats} />
       )
     }
     else if (status.repos && userName.length !== 0) {

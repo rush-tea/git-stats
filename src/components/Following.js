@@ -14,6 +14,7 @@ const overHead = css`
 
 function Following(props) {
 
+    const max_page = Math.ceil(props.stats.following / 30);
     const [followings, setFollowings] = useState([]);
 
     const [pageNo, setPageNo] = useState(1);
@@ -57,9 +58,17 @@ function Following(props) {
                         })
                     }
                 </div>
-                <div className='page-button'>
-                    <button onClick={() => setPageNo(pageNo - 1)}>Prev</button>
-                    <button onClick={() => setPageNo(pageNo + 1)}>Next</button>
+                <div className="page-button">
+                    <button onClick={() => {
+                        if (pageNo != 1) {
+                            setPageNo(pageNo - 1)
+                        }
+                    }} className={pageNo === 1 ? 'btn disabled' : 'btn'} >Prev</button>
+                    <button onClick={() => {
+                        if (pageNo != max_page) {
+                            setPageNo(pageNo + 1)
+                        }
+                    }} className={pageNo === max_page ? 'btn disabled' : 'btn'} >Next</button>
                 </div>
             </>
         )

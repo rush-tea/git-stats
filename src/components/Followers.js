@@ -15,7 +15,6 @@ const overHead = css`
 function Followers(props) {
 
     const max_page = Math.ceil(props.stats.followers / 30);
-    console.log(max_page);
 
     const [followers, setFollowers] = useState([]);
 
