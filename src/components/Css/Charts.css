@@ -1,28 +1,35 @@
 @media (max-width: 800px){
-    .day-stats .charts div{
-        font-size: 60% !important;
+    .day-stats .charts .chart-heading{
+        font-size: 80% !important;
     }
     .day-stats canvas{
         margin: 10px auto 0 auto;
+        padding: 0px 10px 10px 10px;
     }
     .day-stats .charts{
-        border: 1px solid #e0e0e0;
+        box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
         margin: 10px 0px 20px 0px;
         border-radius: 5px;
     }
 }
-
-@media (min-width: 800px){
+@media (min-width: 800px) and (max-width: 1260px){
     .day-stats {
         width: 100%;
     }
-
-    .day-stats div {
+    .charts .chart-heading{
+        text-align: center;
+    }
+    .day-stats .charts {
         width: 100%;
+        padding: 0 0px 20px 0px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 10px 5px rgba(0,0,0,0.1);
+        border-radius: 5px;
     }
 }
 
-@media (min-width: 1200px){
+@media (min-width: 1260px){
     .day-stats {
         width: 100%;
         display: flex;
@@ -32,8 +39,8 @@
     }
 
     .day-stats .charts {
+        box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
         margin: 10px 0 10px 0;
-        border: 1px solid #e0e0e0;
         border-radius: 5px;
         width: 100%;
         padding: 0px 0 20px 0;
@@ -43,15 +50,25 @@
     }
 }
 
-.day-stats .charts div {
-    background-color: #f7f7f7;
-    padding: 10px 0px 10px 10px;
-    font-size: 90%;
-    color: #858484;
+.day-stats .charts .chart-heading {
+    background-color: #fcfcfc;
+    padding: 10px 10px 10px 10px;
+    margin: 0px 0 10px 0px;
+    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.05);
+    color: #5c5c5c;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     border-bottom: 1px solid #f6f6fc;
 }
 .day-stats .charts div span{
-    color: #435d96;
+    color: #6d9bff;
+}
+
+.day-stats .charts{
+    background-color: white;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.040);
+}
+
+.day-stats .charts .chart-heading {
+    font-size: 80% !important;
 }

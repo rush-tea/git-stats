@@ -1,10 +1,20 @@
 /*---------------*/
 /* Followers and Following Styling */
 /*---------------*/
-
+@media(max-width: 800px){
+    .f-div {
+        overflow-y: scroll;
+        height: 400px;
+    }
+    .a-stats{
+        height: 460px;
+    }
+}
 .f-div {
     overflow-y: scroll;
-    height: 410px;
+    height: 620px;
+    padding: 0 10px 0 10px;
+    background-color: white;
 }
 
 .f-logo {
@@ -31,11 +41,20 @@
 }
 
 .page-button {
+    background-color: white;
     width: 95%;
-    padding: 10px 0 10px 0;
     display: flex;
     align-items: center;
     margin: 10px auto 0 auto;
+}
+
+.page-button button{
+    padding: 5px 20px 5px 20px;
+    border-radius: 2px;
+    background-color: #f7f7f7;
+}
+.page-button button:hover{
+    background-color: #f1f1f1;
 }
 
 .page-button button:nth-child(2) {

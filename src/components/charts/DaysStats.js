@@ -51,37 +51,29 @@ const DayStats = (props) => {
                 timeArray[hours]++;
                 switch (day) {
                     case "Mon":
-                        //daysArray[0]++;
                         Mon++;
                         break;
                     case "Tue":
-                        //daysArray[1]++;
                         Tue++;
                         break;
                     case "Wed":
-                        //daysArray[2]++;
                         Wed++;
                         break;
                     case "Thu":
-                        //daysArray[3]++;
                         Thur++;
                         break;
                     case "Fri":
-                        //daysArray[4]++;
                         Fri++;
                         break;
                     case "Sat":
-                        //daysArray[5]++;
                         Sat++;
                         break;
                     case "Sun":
-                        //daysArray[6]++;
                         Sun++;
                         break;
                     default:
                         break;
                 }
-                //setLoad(true);
             });
             [Mon, Tue, Wed, Thur, Fri, Sat, Sun].forEach((data) => {
                 daysArray.push(data);
@@ -139,7 +131,7 @@ const DayStats = (props) => {
                     a6.push(timeArray[i]);
                 }
             }
-
+            // Calculating max productive time in day
             let max_sum = 0;
             let max_sum_index = -1;
             for (let i = 0; i < 4; i++) {
@@ -176,7 +168,7 @@ const DayStats = (props) => {
                 <><>
                     <div className="charts">
                         {
-                            loaded === true && <div>Most productive on <span>{prodDays.firstDay}</span> in recent Days.</div>
+                            loaded === true && <div className="chart-heading">Most productive on <span> {prodDays.firstDay}</span> in recent Days.</div>
                         }
                         {
                             loaded === true && <Bar data={{
