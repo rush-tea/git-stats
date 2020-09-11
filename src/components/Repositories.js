@@ -17,7 +17,7 @@ function Repositories(props) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        axios.get("https://api.github.com/users/" + props.userName + "/repos", {
+        axios.get("https://api.github.com/users/" + props.userName + "/repos?per_page=100", {
             headers: {
                 authorization: `token ${process.env.REACT_APP_API_KEY}`
             }
