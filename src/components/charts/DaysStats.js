@@ -13,9 +13,9 @@ const DayStats = (props) => {
     const [prodDays, setProdDays] = useState({
         firstDay: ''
     });
-    const [prodTime, setProdTime] = useState({
+    /*const [prodTime, setProdTime] = useState({
         time: ''
-    });
+    });*/
     const [loaded,setLoaded] = useState(false);
     const [Days, setDays] = useState([0,0,0,0,0,0,0])
     const [Time, setTime] = useState({
@@ -106,7 +106,7 @@ const DayStats = (props) => {
                 timeArray[i] = data.toFixed(2);
                 i++;
             });
-            var nit=0,mor=0,aft=0,eve=0;
+            /*var nit=0,mor=0,aft=0,eve=0;
             for (let i = 0; i < timeArray.length; i++) {
                 if(i<6){
                     nit = nit + parseInt(timeArray[i]);
@@ -143,7 +143,7 @@ const DayStats = (props) => {
                 setProdTime({
                     time: 'Night 6PM to 12PM'
                 });
-            }
+            }*/
             var bgArray = ['rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 1, 64, 0.2)'];
             var a1 = [];
             var a2 = [];
@@ -244,7 +244,7 @@ const DayStats = (props) => {
                     </div>
                     <div className="charts">
                         {
-                            loaded === true && <div className="chart-heading">Most productive during <span>{prodTime.time}</span>.</div>
+                            /*loaded === true && <div className="chart-heading">Most productive during <span>{prodTime.time}</span>.</div>*/
                         }
                         {
                             loaded === true && <Bar data={{
