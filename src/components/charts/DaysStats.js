@@ -13,6 +13,7 @@ const DayStats = (props) => {
     const [prodDays, setProdDays] = useState({
         firstDay: ''
     });
+    const [prodTime, setProdTime] = useState('');
     const [loaded, setLoaded] = useState(false);
     const [Days, setDays] = useState([0, 0, 0, 0, 0, 0, 0])
     const [Time, setTime] = useState({
@@ -85,14 +86,12 @@ const DayStats = (props) => {
             [Mon, Tue, Wed, Thur, Fri, Sat, Sun].forEach((data) => {
                 daysArray.push(data);
             })
-            console.log(daysArray);
             var sum = Mon + Tue + Wed + Thur + Fri + Sat + Sun;
             setDays([((Mon / sum) * 100).toFixed(2), ((Tue / sum) * 100).toFixed(2), ((Wed / sum) * 100).toFixed(2), ((Thur / sum) * 100).toFixed(2), ((Fri / sum) * 100).toFixed(2), ((Sat / sum) * 100).toFixed(2), ((Sun / sum) * 100).toFixed(2)]);
             var arr1 = [Mon, Tue, Wed, Thur, Fri, Sat, Sun];
             var max1 = arr1.reduce(function (a, b) {
                 return Math.max(a, b);
             });
-            console.log(max1);
             var index1;
             for (let i = 0; i < arr1.length; i++) {
                 if (max1 === arr1[i]) {
@@ -100,7 +99,6 @@ const DayStats = (props) => {
                     break;
                 }
             }
-            console.log(arr1);
             setProdDays({
                 firstDay: DayName[index1]
             });
@@ -121,7 +119,6 @@ const DayStats = (props) => {
             var a4 = [];
             var a5 = [];
             var a6 = [];
-            //console.log(daysArray);
             for (let i = 0; i < timeArray.length; i++) {
                 if (i % 6 === 0) {
                     a1.push(timeArray[i]);
@@ -142,6 +139,19 @@ const DayStats = (props) => {
                     a6.push(timeArray[i]);
                 }
             }
+
+            let max_sum = 0;
+            let max_sum_index = -1;
+            for (let i = 0; i < 4; i++) {
+                const h_sum = Number(a1[i]) + Number(a2[i]) + Number(a3[i]) + Number(a4[i]) + Number(a5[i]) + Number(a6[i]);
+                if (h_sum > max_sum) {
+                    max_sum_index = i;
+                    max_sum = h_sum;
+                }
+            }
+            const h_array = ["Night", "Morning", "Daytime", "Evening"];
+            setProdTime(h_array[max_sum_index]);
+
             setBg(bgArray);
             setTime({
                 a: a1,
@@ -151,7 +161,6 @@ const DayStats = (props) => {
                 e: a5,
                 f: a6
             });
-            //console.log(daysArray);
 
 
             setLoaded(true);
@@ -161,7 +170,7 @@ const DayStats = (props) => {
         }
     }
 
-    const getContent = (Days, loaded, prodDays, Time, TimebgColor, override) => {
+    const getContent = (Days, loaded, prodDays, prodTime, Time, TimebgColor, override) => {
         if (loaded === true) {
             return (
                 <><>
@@ -217,6 +226,9 @@ const DayStats = (props) => {
 
                     </div>
                     <div className="charts">
+                        {
+                            loaded === true && <div>Most productive during <span>{prodTime}</span> in recent Days.</div>
+                        }
                         {
                             loaded === true && <Bar data={{
                                 datasets: [{
@@ -293,7 +305,7 @@ const DayStats = (props) => {
     return (
         <>
             {dispEvents(events)}
-            {getContent(Days, loaded, prodDays, Time, TimebgColor, override)}
+            {getContent(Days, loaded, prodDays, prodTime, Time, TimebgColor, override)}
         </>
     )
 
