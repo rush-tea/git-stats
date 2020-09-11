@@ -1,5 +1,5 @@
 import React from 'react'
-import CommitList from './commitList'
+import CommitList from './Contributions/commitList'
 
 
 const MoreRepoDetails = (props) => {
