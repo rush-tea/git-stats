@@ -14,6 +14,9 @@ const overHead = css`
 
 function Followers(props) {
 
+    const max_page = Math.ceil(props.stats.followers / 30);
+    console.log(max_page);
+
     const [followers, setFollowers] = useState([]);
 
     const [pageNo, setPageNo] = useState(1);
@@ -59,8 +62,16 @@ function Followers(props) {
                     }
                 </div>
                 <div className="page-button">
-                    <button onClick={() => setPageNo(pageNo - 1)}>Prev</button>
-                    <button onClick={() => setPageNo(pageNo + 1)}>Next</button>
+                    <button onClick={() => {
+                        if (pageNo != 1) {
+                            setPageNo(pageNo - 1)
+                        }
+                    }} className={pageNo === 1 ? 'btn disabled' : 'btn'} >Prev</button>
+                    <button onClick={() => {
+                        if (pageNo != max_page) {
+                            setPageNo(pageNo + 1)
+                        }
+                    }} className={pageNo === max_page ? 'btn disabled' : 'btn'} >Next</button>
                 </div>
             </>
         )
