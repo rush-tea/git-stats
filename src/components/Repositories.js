@@ -43,7 +43,7 @@ function Repositories(props) {
                 <div className="repo-desc">{res.description}</div>
                 <div className="repo-forks">Forks: {res.forks}</div>
                 <div className="repo-stars">Stars: {res.watchers}</div>
-                <div className="repo-language">{res.language}</div>
+                <div className="repo-language">Language: {res.language}</div>
                 {
                     res.homepage && <div className="repo-site"><a href={res.homepage}> View Website <i className="fa fa-sitemap" aria-hidden="true"></i></a></div>
                 }
