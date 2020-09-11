@@ -23,6 +23,7 @@ function Repositories(props) {
             }
         })
             .then(res => {
+                console.log(res.data);
                 setActivity(res.data);
                 setIsLoading(false);
             })
@@ -37,7 +38,7 @@ function Repositories(props) {
                         pathname: `/${props.userName}/${res.name}`,
                         state: res
                     }
-                } className="repo-name">{res.name}</Link>
+                } className="repo-name">{res.name}{res.fork ? '(Forked)' : ''}</Link>
                 <a href={res.html_url} className="repo-more">View on GitHub<i className="fa fa-github-alt" aria-hidden="true"></i></a>
                 <div className="repo-desc">{res.description}</div>
                 <div className="repo-forks">Forks: {res.forks}</div>
@@ -64,7 +65,7 @@ function Repositories(props) {
                             return (
                                 <div className="repo-detail" key={res.id}>
                                     {
-                                        res.fork == false && getRepo(res)
+                                        getRepo(res)
                                     }
                                 </div>
                             )
