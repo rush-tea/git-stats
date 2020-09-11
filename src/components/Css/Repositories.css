@@ -35,3 +35,10 @@
     grid-column: 2/4;
     text-align: right;
 }
+
+@media(max-width: 800px) {
+    .repo-scroll {
+        overflow-y: scroll;
+        height: 400px;
+    }
+}
