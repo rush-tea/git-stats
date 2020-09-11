@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { css } from '@emotion/core';
+import {css} from '@emotion/core';
 
 const override = css`
     display: block;
@@ -13,8 +13,11 @@ const DayStats = (props) => {
     const [prodDays, setProdDays] = useState({
         firstDay: ''
     });
-    const [loaded, setLoaded] = useState(false);
-    const [Days, setDays] = useState([0, 0, 0, 0, 0, 0, 0])
+    const [prodTime, setProdTime] = useState({
+        time: ''
+    });
+    const [loaded,setLoaded] = useState(false);
+    const [Days, setDays] = useState([0,0,0,0,0,0,0])
     const [Time, setTime] = useState({
         a: [],
         b: [],
@@ -23,84 +26,73 @@ const DayStats = (props) => {
         e: [],
         f: []
     });
-    const [TimebgColor, setBg] = useState();
+    const [TimebgColor,setBg] = useState();
 
     useEffect(() => {
         var ev = [];
-        if (props.events.length > 0) {
+        if(props.events.length > 0 ){
             props.events.forEach(res => {
                 ev.push(res);
             });
         }
         setEvents(ev);
-    }, [props]);
+    },[props]);
 
     const dispEvents = (events) => {
-
-        if (events.length > 0 && loaded === false) {
-            var DayName = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+        
+        if(events.length > 0 && loaded === false){
+            var DayName = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
             var daysArray = []
-            var timeArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-            var Mon = 0, Tue = 0, Wed = 0, Thur = 0, Fri = 0, Sat = 0, Sun = 0;
+            var timeArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0];
+            var Mon = 0,Tue = 0,Wed = 0,Thur=0,Fri = 0,Sat= 0,Sun = 0;
             events.forEach(res => {
                 var day = new Date(res.created_at);
                 var hours = day.getHours();
                 day = day.toUTCString();
-                day = day.slice(0, 3);
+                day = day.slice(0,3);
                 timeArray[hours]++;
                 switch (day) {
                     case "Mon":
-                        //daysArray[0]++;
                         Mon++;
                         break;
-                    case "Tue":
-                        //daysArray[1]++;
+                    case "Tue" : 
                         Tue++;
                         break;
                     case "Wed":
-                        //daysArray[2]++;
                         Wed++;
                         break;
                     case "Thu":
-                        //daysArray[3]++;
                         Thur++;
                         break;
                     case "Fri":
-                        //daysArray[4]++;
                         Fri++;
                         break;
                     case "Sat":
-                        //daysArray[5]++;
                         Sat++;
                         break;
                     case "Sun":
-                        //daysArray[6]++;
                         Sun++;
-                        break;
+                        break;                    
                     default:
                         break;
                 }
-                //setLoad(true);
             });
             [Mon, Tue, Wed, Thur, Fri, Sat, Sun].forEach((data) => {
                 daysArray.push(data);
-            })
-            console.log(daysArray);
-            var sum = Mon + Tue + Wed + Thur + Fri + Sat + Sun;
-            setDays([((Mon / sum) * 100).toFixed(2), ((Tue / sum) * 100).toFixed(2), ((Wed / sum) * 100).toFixed(2), ((Thur / sum) * 100).toFixed(2), ((Fri / sum) * 100).toFixed(2), ((Sat / sum) * 100).toFixed(2), ((Sun / sum) * 100).toFixed(2)]);
-            var arr1 = [Mon, Tue, Wed, Thur, Fri, Sat, Sun];
-            var max1 = arr1.reduce(function (a, b) {
-                return Math.max(a, b);
             });
-            console.log(max1);
+            var sum = Mon + Tue + Wed +Thur + Fri + Sat + Sun;
+            setDays([((Mon/sum)*100).toFixed(2), ((Tue/sum)*100).toFixed(2), ((Wed/sum)*100).toFixed(2), ((Thur/sum)*100).toFixed(2), ((Fri/sum)*100).toFixed(2), ((Sat/sum)*100).toFixed(2), ((Sun/sum)*100).toFixed(2)]);
+            var arr1 = [Mon, Tue, Wed, Thur, Fri, Sat, Sun];
+            var max1 = arr1.reduce(function(a,b) {
+                return Math.max(a,b);
+            });
             var index1;
             for (let i = 0; i < arr1.length; i++) {
-                if (max1 === arr1[i]) {
+                if(max1 === arr1[i]){
                     index1 = i;
                     break;
                 }
             }
-            console.log(arr1);
             setProdDays({
                 firstDay: DayName[index1]
             });
@@ -110,10 +102,48 @@ const DayStats = (props) => {
                 sum = sum + data;
             });
             timeArray.forEach(data => {
-                data = (data / sum) * 100;
+                data = (data/sum) * 100;
                 timeArray[i] = data.toFixed(2);
                 i++;
             });
+            var nit=0,mor=0,aft=0,eve=0;
+            for (let i = 0; i < timeArray.length; i++) {
+                if(i<6){
+                    nit = nit + parseInt(timeArray[i]);
+                }
+                else if(i>=6 && i<=11){
+                    mor = mor + parseInt(timeArray[i]);
+                }
+                else if(i>= 12 && i<=17){
+                    aft = aft + parseInt(timeArray[i]);
+                }
+                else if(i>= 18 && i<=23){
+                    eve = eve + parseInt(timeArray[i]);
+                }
+            }
+            var maxT = [nit,mor,aft,eve].reduce(function(a,b){
+                return Math.max(a,b);
+            });
+            if(maxT === nit){
+                setProdTime({
+                    time: 'Night 12PM to 6AM'
+                });
+            }
+            else if(maxT === mor){
+                setProdTime({
+                    time: 'Morning 6AM to 11:59 AM'
+                });
+            }
+            else if (maxT === aft) {
+                setProdTime({
+                    time: 'DayTime 12PM to 6PM'
+                });
+            }
+            else if (maxT === eve) {
+                setProdTime({
+                    time: 'Night 6PM to 12PM'
+                });
+            }
             var bgArray = ['rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 1, 64, 0.2)'];
             var a1 = [];
             var a2 = [];
@@ -121,15 +151,14 @@ const DayStats = (props) => {
             var a4 = [];
             var a5 = [];
             var a6 = [];
-            //console.log(daysArray);
             for (let i = 0; i < timeArray.length; i++) {
-                if (i % 6 === 0) {
+                if(i%6 === 0){
                     a1.push(timeArray[i]);
                 }
-                else if (i % 6 === 1) {
+                else if(i%6 === 1){
                     a2.push(timeArray[i]);
                 }
-                else if (i % 6 === 2) {
+                else if(i%6 === 2){
                     a3.push(timeArray[i]);
                 }
                 else if (i % 6 === 3) {
@@ -151,23 +180,20 @@ const DayStats = (props) => {
                 e: a5,
                 f: a6
             });
-            //console.log(daysArray);
-
-
             setLoaded(true);
         }
-        else {
+        else{
             return;
         }
     }
 
-    const getContent = (Days, loaded, prodDays, Time, TimebgColor, override) => {
-        if (loaded === true) {
-            return (
+    const getContent = (Days,loaded,prodDays,Time,TimebgColor,override) => {
+        if(loaded === true){
+            return(
                 <><>
                     <div className="charts">
                         {
-                            loaded === true && <div>Most productive on <span>{prodDays.firstDay}</span> in recent Days.</div>
+                            loaded === true && <div className="chart-heading">Most productive on <span> {prodDays.firstDay}</span> in recent Days.</div>
                         }
                         {
                             loaded === true && <Bar data={{
@@ -213,10 +239,13 @@ const DayStats = (props) => {
                                 }
                             }} />
                         }
-
+                        
 
                     </div>
                     <div className="charts">
+                        {
+                            loaded === true && <div className="chart-heading">Most productive during <span>{prodTime.time}</span>.</div>
+                        }
                         {
                             loaded === true && <Bar data={{
                                 datasets: [{
@@ -290,10 +319,10 @@ const DayStats = (props) => {
         }
     }
 
-    return (
+    return(
         <>
-            {dispEvents(events)}
-            {getContent(Days, loaded, prodDays, Time, TimebgColor, override)}
+        {dispEvents(events)}
+        {getContent(Days, loaded, prodDays, Time, TimebgColor,override)}
         </>
     )
 

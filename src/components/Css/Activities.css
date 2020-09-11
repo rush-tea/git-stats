@@ -29,7 +29,13 @@
 .activity-scroll {
     overflow-y: scroll;
     font-size: 80%;
-    height: 410px;
-
+    padding: 0 10px 0 10px;
+    height: 655px;
+}
+@media(max-width: 800px) {
+    .activity-scroll {
+        overflow-y: scroll;
+        height: 400px;
+    }
 }
 
