@@ -3,7 +3,7 @@ import CommitList from './commitList'
 
 
 const MoreRepoDetails = (props) => {
-    console.log(props);
+    //console.log(props);
     return (
         < CommitList data={props} />
     );

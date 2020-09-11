@@ -25,6 +25,7 @@ function Repositories(props) {
                 <Link to={
                     {
                         pathname: `/${props.userName}/${res.name}`,
+                        state: res
                     }
                 } className="repo-name">{res.name}</Link>
                 <a href={res.html_url} className="repo-more">View on GitHub<i className="fa fa-github-alt" aria-hidden="true"></i></a>
