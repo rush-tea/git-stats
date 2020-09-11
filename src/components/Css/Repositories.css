@@ -2,6 +2,7 @@
     overflow-y: scroll;
     height: 410px;
     font-size: 80%;
+    height: 655px;
 }
 
 .repo-detail {
@@ -33,4 +34,11 @@
 .repo-site {
     grid-column: 2/4;
     text-align: right;
+}
+
+@media(max-width: 800px) {
+    .repo-scroll {
+        overflow-y: scroll;
+        height: 400px;
+    }
 }

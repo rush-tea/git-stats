@@ -219,7 +219,7 @@ const DayStats = (props) => {
                     </div>
                     <div className="charts">
                         {
-                            loaded === true && <div>Most productive during <span>{prodTime}</span> in recent Days.</div>
+                            loaded === true && <div className="chart-heading">Most productive during <span>{prodTime}</span> in recent Days.</div>
                         }
                         {
                             loaded === true && <Bar data={{

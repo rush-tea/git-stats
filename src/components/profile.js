@@ -122,12 +122,12 @@ function Profile(props) {
   const getTabs = (status, userName, events) => {
     if (status.follower && userName.length !== 0) {
       return (
-        <Followers userName={userName} />
+        <Followers userName={userName} stats={stats} />
       )
     }
     else if (status.following && userName.length !== 0) {
       return (
-        <Following userName={userName} />
+        <Following userName={userName} stats={stats} />
       )
     }
     else if (status.repos && userName.length !== 0) {

@@ -1,15 +1,7 @@
 /*---------------*/
 /* Followers and Following Styling */
 /*---------------*/
-@media(max-width: 800px){
-    .f-div {
-        overflow-y: scroll;
-        height: 400px;
-    }
-    .a-stats{
-        height: 460px;
-    }
-}
+
 .f-div {
     overflow-y: scroll;
     height: 620px;
@@ -59,4 +51,13 @@
 
 .page-button button:nth-child(2) {
     margin-left: auto;
+}
+@media(max-width: 800px){
+    .f-div {
+        overflow-y: scroll;
+        height: 400px;
+    }
+    .a-stats{
+        height: 460px;
+    }
 }

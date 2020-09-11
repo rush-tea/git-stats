@@ -3,6 +3,11 @@
     margin:0 auto;    
 }
 
+.loading{
+    color: red;
+    text-align: center;
+}
+
 .heading{
     text-align: center;
 }

@@ -74,8 +74,8 @@ const CommitList = (props) => {
 
     return (
         <div>
-            <h1 className="heading">Contributions</h1>
-            {isloading ? 'data loading...' : ''}
+            <h1 className="heading"><u>Contributions</u></h1>
+            {isloading ? <p className="loading">data loading..</p> : ''}
             <div className="commit-list">
                 {y_components}
             </div>
