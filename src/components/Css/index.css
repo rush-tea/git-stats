@@ -96,12 +96,12 @@ a{
 
 @media (max-width: 800px){
   body{
-    width: 95%;
+    
     margin-left: auto;
     margin-right: auto;
   }
   main{
-    width: 100%;
+    width: 95%;
   }
   .a-stats{
     width: 100%;
@@ -112,6 +112,9 @@ a{
   }
   .stats .btn{
     padding: 4px;
+  }
+  main{
+    margin: 0 auto 0 auto;
   }
 }
 @media(min-width: 800px) and (max-width: 1260px){
@@ -129,15 +132,12 @@ a{
 
 @media(min-width: 1260px) {
   .App {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
   main{
     grid-column: 1/4;
-    width: 100%;
+    width: 95%;
     margin: 0 auto 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;

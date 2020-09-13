@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne&display=swap');
+footer {
+    font-family: 'Syne',
+    sans-serif;
+    width: 100% !important;
+    color: #fafafa;
+    bottom: 0px;
+    margin-top: 40px;
+    background-color: #2e2e2e;
+}
+footer .salutation {
+    width: 60%;
+    text-align: center;
+    padding: 20px 15px 15px 15px;
+    color: #bebebe;
+    font-weight: 300;
+}
+
+footer .salutation a {
+    color: #6d72c5;
+}
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+footer .footer-contact-names {
+    padding: 10px;
+    border-top: 1px solid #55536d;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-contact-names div{
+    text-align: center;
+    padding: 6px 10px 6px 10px;
+    margin: 0 10px 0 10px;
+}
+.footer-contact-names span{
+    color: #b3b3b3;
+    font-weight: 200;
+}
+.footer-links a{
+    font-size: 80%;
+    padding: 2px 4px 2px 4px;
+} 
+footer .fa-instagram{
+    color: #963a86;
+}
+footer .fa-linkedin{
+    color: #6d72c5;
+}
+footer .fa-facebook {
+    color: #6d72c5;
+}
+footer .fa-github{
+    color: #babac7;
+}

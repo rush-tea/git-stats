@@ -9,9 +9,10 @@ import Following from './Following';
 import Repositories from './Repositories';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { css } from '@emotion/core';
+import Footer from './SearchPage/SearchPageFooter';
 
 const overHead = css`
-  height: 60vh;
+  height: 35vh;
   display: block;
   margin: 30vh auto 10vh auto;
   grid-column: 1/4;
@@ -214,6 +215,7 @@ function Profile(props) {
               {getTabs(isActive, profile.login, events)}
             </div>
           </main>
+          <Footer />
         </></>
       )
     }

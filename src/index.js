@@ -9,6 +9,7 @@ import './components/Css/Activities.css';
 import './components/Css/Charts.css';
 import './components/Css/ProfileTop.css';
 import './components/Css/SearchPage.css';
+import './components/Css/Footer.css';
 
 ReactDOM.render(
   <React.StrictMode>

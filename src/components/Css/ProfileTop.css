@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300&display=swap');
 .fa-at{
     font-size: 80%;
 }
@@ -16,6 +17,7 @@
     align-items: center;
     display: grid;
     grid-template-columns: 140px 2fr;
+    padding-top: 15px;
 }
 
 .logo hr {
@@ -54,10 +56,11 @@
 }
 
 .joinDate{
+    font-family: IBM Plex Sans,sans-serif;
     grid-column: 2/4;
     text-align: end;
     font-size: 70%;
-    padding: 5px;
+    padding: 10px;
     color: #757575;
 }
 .headData{
@@ -71,6 +74,8 @@
     font-size: 70%;
     padding: 5px;
     color: #757575;
+    font-family: IBM Plex Sans,
+    sans-serif;
 }
 
 header{
@@ -91,7 +96,7 @@ header{
 
 @media(max-width: 800px){
     header {
-        width: 100%;
+        width: 95%;
         display: grid;
         grid-template-columns: 1fr;
     }
@@ -128,6 +133,7 @@ header{
         margin-bottom: 10px;
     }
     .logo{
+        padding-left: 15px;
         box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
         padding: 10px;
         margin-top: 20px;
@@ -137,7 +143,7 @@ header{
 @media(min-width: 1260px){
     
     header{
-        width: 100%;
+        width: 95%;
         grid-column: 1/4;
         margin-left: auto;
         margin-right: auto;
@@ -150,6 +156,7 @@ header{
         text-align: center;
     }
     .logo{
+        padding-left: 20px;
         box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
         margin-top: 10px;
         margin-bottom: 10px;
