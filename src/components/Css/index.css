@@ -131,10 +131,6 @@ a{
 
 
 @media(min-width: 1260px) {
-  .App {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
   main{
     grid-column: 1/4;
     width: 95%;
