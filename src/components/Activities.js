@@ -18,7 +18,7 @@ function Activities(props) {
                         var issueIcon = <i className="fa fa-bug" aria-hidden="true"></i>
                         var deleteIcon = <i className="fa fa-trash" aria-hidden="true"></i>
                         var plusIcon = <i className="fa fa-plus-circle" aria-hidden="true"></i>
-                        repoUrl = "https://github.com/" + res.actor.login + "/" + res.repo.name.slice(res.actor.login.length + 1, res.repo.name.length);
+                        var repoUrl = "https://github.com/" + res.actor.login + "/" + res.repo.name.slice(res.actor.login.length + 1, res.repo.name.length);
                         switch (res.type) {
                             case "CreateEvent":
                                 if (res.payload.ref_type === 'branch') {
@@ -87,7 +87,7 @@ function Activities(props) {
                                 )
                             case "IssuesEvent":
                                 var action = res.payload.action;
-                                var repoUrl = "https://github.com/" + res.repo.name;
+                                repoUrl = "https://github.com/" + res.repo.name;
                                 return (
                                     <div key={res.id}>
                                         {issueIcon} {action.slice(0, 1).toUpperCase() + action.slice(1, action.length)} a <a className="cool-link" href={res.payload.issue.html_url}>issue </a> in <a className="cool-link" href={repoUrl}> {res.repo.name} </a>
@@ -103,4 +103,4 @@ function Activities(props) {
     )
 }
 
-export default Activities; 
+export default Activities;
