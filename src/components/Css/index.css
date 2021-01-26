@@ -72,8 +72,14 @@ a{
   border-bottom-color: #919191;
   border-bottom-width: 2px;
 }
-.stats .btn-primary:focus{
-  box-shadow: none;
+.stats .btn:focus{
+  box-shadow: none !important;
+}
+.stats .btn:active{
+  background-color: #f7f7f7 !important;
+  color: #000 !important;
+  border: solid white 1px !important;
+  border-bottom: solid #919191 2px !important;
 }
 .a-stats{
   padding: 0 0 20px 0; 
